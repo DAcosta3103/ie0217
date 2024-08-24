@@ -7,8 +7,8 @@ En este laboratorio se trabajan los conocimientos de C++ adquiridos en la sesion
 ## Ejecución del Código
 
 ### Prerrequisitos
-- Asegúrate de tener instalado `make`.
-- Debes estar en la carpeta raíz del proyecto donde se encuentra el `Makefile`, la cual es "Laboratorio2".
+- Asegúrese de tener instalado `make`.
+- Debe estar en la carpeta raíz del proyecto donde se encuentra el `Makefile`, la cual es "Laboratorio2".
 
 ### Compilación
 Note que el sistema operativo que se está usando es Ubuntu 22.04. Para compilar el proyecto, simplemente ejecuta los siguientes comandos en la terminal:
