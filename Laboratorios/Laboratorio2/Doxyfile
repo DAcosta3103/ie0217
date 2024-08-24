@@ -1,0 +1,74 @@
+
+# Doxyfile 1.9.6
+
+# This file describes the settings to be used by the documentation system
+# doxygen (www.doxygen.org) for a project.
+
+# All text after a double hash (##) is considered a comment and is placed in
+# front of the tags it is supposed to document. Doxygen will be run with this file.
+
+# The PROJECT_NAME tag is the name of the project.
+PROJECT_NAME           = "Sistema de Gestión de Libros"
+
+# The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
+# into which the generated documentation will be written.
+OUTPUT_DIRECTORY       = docs
+
+# The INPUT tag can be used to specify the files and/or directories that contain
+# documented source files.
+INPUT                  = src
+
+# The FILE_PATTERNS tag can be used to specify one or more wildcard patterns
+# (like *.cpp and *.h) to filter out the source-files in the directories.
+FILE_PATTERNS          = *.cpp \
+                         *.hpp
+
+# The RECURSIVE tag can be used to specify whether or not subdirectories should be searched.
+RECURSIVE              = NO
+
+# The EXTRACT_ALL tag can be used to enable the extraction of all entities from
+# the input files.
+EXTRACT_ALL            = YES
+
+# The EXTRACT_PRIVATE and EXTRACT_STATIC tags control whether private class
+# members and static members will be included in the documentation.
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# If the EXTRACT_LOCAL_CLASSES tag is set to YES classes (and structs) defined locally in
+# source files will be included in the documentation.
+EXTRACT_LOCAL_CLASSES  = YES
+
+# If the EXTRACT_LOCAL_METHODS tag is set to YES all documented static functions will be included
+# in the documentation.
+EXTRACT_LOCAL_METHODS  = YES
+
+# If the FULL_PATH_NAMES tag is set to YES doxygen will prepend the full path before files name
+# in the file list and in the header files.
+FULL_PATH_NAMES        = NO
+
+# If the GENERATE_HTML tag is set to YES (the default) doxygen will generate HTML output.
+GENERATE_HTML          = YES
+
+# The HTML_OUTPUT tag is used to specify where the HTML docs will be put.
+HTML_OUTPUT            = html
+
+# The GENERATE_LATEX tag can be used to enable/disable the generation of LaTeX output.
+GENERATE_LATEX         = NO
+
+# The HAVE_DOT tag can be used to specify whether you want to include diagrams.
+HAVE_DOT               = YES
+
+# The DOT_PATH tag can be used to specify the directory where the dot tool can be found.
+DOT_PATH               = "C:/Program Files/Graphviz/bin"
+
+# The CALL_GRAPH tag enables the generation of a call dependency graph for
+# each function documented.
+CALL_GRAPH             = YES
+
+# The CALLER_GRAPH tag enables the generation of a caller dependency graph
+# for each function documented.
+CALLER_GRAPH           = YES
+
+# The EXTRACT_STATIC tag can be used to enable the extraction of static members.
+EXTRACT_STATIC         = YES
