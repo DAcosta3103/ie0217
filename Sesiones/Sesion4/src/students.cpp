@@ -15,7 +15,7 @@ class Student {
 
 // Esta función recibe dos parámetros que vienen de una clase
 
-void calculateAverage(Student s1, Student s2) {
+void calculateAverage(Student s1, Student s2) {  // Se le avisa a la función que va a recibir parámetros de tipo 'Student'
     double average = (s1.marks + s2.marks) / 2;
 
     cout << "Average Marks = " << average << endl;
