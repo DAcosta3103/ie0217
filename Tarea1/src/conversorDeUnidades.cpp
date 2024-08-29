@@ -1,3 +1,30 @@
+/**
+ * @file conversorDeUnidades.cpp
+ * @brief Archivo fuente del script para el conversor de unidades de longitud, peso y temperatura. 
+ * MIT License
+
+ * Copyright (c) 2024 DAcosta3103
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
 #include "conversorDeUnidades.hpp"
 
 #include <iostream>
@@ -5,12 +32,16 @@
 
 using namespace std;
 
-/*
-Para poder desplegarle al usuario con qué unidades está trabajando, se aplica una sobrecarga de funciones a tres funciones 'unidadString' distintas, 
-las cuales reciben parámetros de longitud, peso o temperatura.
-*/
+ /**
+  * Para poder desplegarle al usuario con qué unidades está trabajando, se aplica una sobrecarga de funciones a * tres funciones  
+  * 'unidadString' distintas, las cuales reciben parámetros de longitud, peso o temperatura. 
+  */
 
-// Función para convertir la opción de longitud a string
+/**
+ * @brief Función para convertir opciones de longitud a su respectivo string 
+ * @param op La opción de longitud de tipo OpcionesLongitud.
+ * @return El nombre de la unidad de longitud en string.
+ */
 string unidadString(OpcionesLongitud op) {
     switch(op) {
         case OpcionesLongitud::metro: return "metros";
@@ -24,7 +55,12 @@ string unidadString(OpcionesLongitud op) {
     }
 }
 
-// Función para convertir la opción de peso a string
+/**
+ * @brief Función para convertir opciones de peso a su respectivo string 
+ * @param op La opción de peso de tipo OpcionesPeso.
+ * @return El nombre de la unidad de peso en string.
+ */
+
 string unidadString(OpcionesPeso op) {
     switch(op) {
         case OpcionesPeso::gramo: return "gramos";
@@ -37,7 +73,12 @@ string unidadString(OpcionesPeso op) {
     }
 }
 
-// Función para convertir la opción de temperatura a string
+
+/**
+ * @brief Función para convertir opciones de temperatura a su respectivo string 
+ * @param op La opción de temperatura de tipo OpcionesTemperatura.
+ * @return El nombre de la unidad de temperatura en string.
+ */
 string unidadString(OpcionesTemperatura op) {
     switch(op) {
         case OpcionesTemperatura::celsius: return "C°";
@@ -47,12 +88,21 @@ string unidadString(OpcionesTemperatura op) {
     }
 }
 
-/* La lógica que las funciones conversoras manejan es la siguiente: el usuario elige un valor x, y luego el usuario elige qué unidad quiere que tenga x.
-Sin embargo, lo que pasa por debajo (y sobre lo que no se entera el usuario) es que independientemente de la unidad del valor ingresado,
-el valor se transforma a la unidad base para realizar el cálculo: metro para longitud, gramo para peso y celsius para temperatura.
-Es a partir de esta unidad base que se realiza el cálculo, y finalmente se pasa la unidad base a la unidad escogida por el usuario
-*/
 
+
+/** 
+ * La lógica que las funciones conversoras manejan es la siguiente: el usuario elige un valor x, y luego el usuario elige qué unidad quiere * que tenga x.
+ * Sin embargo, lo que pasa por debajo (y sobre lo que no se entera el usuario) es que independientemente de la unidad del valor ingresado,
+ * el valor se transforma a la unidad base para realizar el cálculo: metro para longitud, gramo para peso y celsius para temperatura.
+ * Es a partir de esta unidad base que se realiza el cálculo, y finalmente se pasa la unidad base a la unidad escogida por el usuario
+*/ 
+
+
+
+/**
+ * @brief Función para calcular conversiones de longitud 
+ * @return void
+ */
 void convertirUnidadesLongitud() {
     int opcion;
     double valor, metros;
@@ -168,7 +218,10 @@ void convertirUnidadesLongitud() {
     menuPrincipal();
 }
 
-// función de conversión encargada del peso
+/**
+ * @brief Función para calcular conversiones de peso
+ * @return void
+ */
 
 void convertirUnidadesPeso() {
     int opcion;
@@ -274,8 +327,10 @@ void convertirUnidadesPeso() {
     menuPrincipal();
 }
 
-// función de conversión encargada de la temperatura
-
+/**
+ * @brief Función para calcular conversiones de temperatura
+ * @return void
+ */
 void convertirUnidadesTemperatura() {
     int opcion;
     double valor, celsius;
@@ -350,9 +405,12 @@ void convertirUnidadesTemperatura() {
     menuPrincipal();
 }
 
-// Se crea la función para el menú principal, la cual es recursiva ya que luego de cada conversión se abre el menú
-// se atrapan los errores de cuando se elige una opción no incluida, y la única manera de terminar el programa es con la opción 4
-
+/**
+ * @brief Función para mostrar el menú principal, la cual es recursiva ya que luego de cada conversión se abre el menú. 
+ * Se crea la función para el menú principal, la cual es recursiva ya que luego de cada conversión se abre el menú
+ * 
+ * @return void
+ */
 void menuPrincipal() {
     int opcion;
     bool opcionValida;
