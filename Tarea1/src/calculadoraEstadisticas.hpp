@@ -31,16 +31,27 @@
 
 
 
-class Metodos {
-    public:
-        int numero1, numero2; // Atributos de la funcion
+// class Metodos {
+//     public:
+//         int numero1, numero2; // Atributos de la funcion
+// 
+//         Metodos(int n1, int n2);
+//         
+//         // Volvemos al metodo realizarOperacion, el cual sera el encargado de las operaciones matematicas
+//         virtual void realizarOperacion(int n1, int n2);
+// };
+// 
+// class Suma: public Metodos {
+//     public:
+//         Suma
+// }
 
-        Metodos(int n1, int n2);
-        
-        // Volvemos al metodo realizarOperacion, el cual sera el encargado de las operaciones matematicas
-        virtual void realizarOperacion(int n1, int n2);
-};
+int sumaArreglo();
+int promedioArreglo();
+int maxArreglo();
+int minArreglo();
 
+void buscarNumero();
 
 void menuPrincipal();
 
