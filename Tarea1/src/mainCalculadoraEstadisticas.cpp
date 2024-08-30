@@ -35,8 +35,6 @@ using namespace std;
 
 // Funcion main
 
-int tamanioArreglo;
-
 int main(int argc, char* argv[]) {
 
     // Verificar si se han pasado al menos un argumento (además del nombre del programa, el cual cuenta como 1)
@@ -48,7 +46,7 @@ int main(int argc, char* argv[]) {
 
     
     int tamanioArreglo = argc - 1;      // Obtener el número de argumentos (excluyendo el nombre del programa)
-    int arregloNumeros[tamanioArreglo];  // Se crea un arreglo dentro del script para los numeros ingresados
+    int* arregloNumeros = new int[tamanioArreglo];   // Se crea un arreglo dentro en la memoria para que sea llenado por el script con los numeros ingresados
      
 
     /**
@@ -56,9 +54,10 @@ int main(int argc, char* argv[]) {
      * hacia arregloNumeros
      */
     obtenerArreglo(argc, argv, arregloNumeros); 
+    menuPrincipal(arregloNumeros, tamanioArreglo);
 
     // Se libera la memoria asignada dinámicamente
-    delete[] numeros;
+    delete[] arregloNumeros;
 
     return 0;
 }

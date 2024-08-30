@@ -45,43 +45,43 @@ void obtenerArreglo(int argc, char* argv[], int* arregloAuxiliar);
  * @brief Funcion para buscar un número en el arreglo
  * @return void
  */
-void buscarNumero();
+void buscarNumero(int* arregloAuxiliar, int tamanioArreglo);
 
 /**
  * @brief Es la encargada de sumar los numeros del arreglo
  * @return La suma total del arreglo
  */
-int sumarArreglo();
+int sumarArreglo(int* arregloAuxiliar, int tamanioArreglo);
 
 /**
  * @brief Es la encargada de obtener el promedio total del arreglo
  * @return El promedio del arreglo
  */
-int promedioArreglo();
+double promedioArreglo(int* arregloAuxiliar, int tamanioArreglo);
 
 /**
  * @brief Es la encargada de obtener el numero mayor del arreglo
  * @return El número más grande del arreglo
  */
-int obtenerMayorNum();
+int obtenerMayorNum(int* arregloAuxiliar, int tamanioArreglo);
 
 /**
  * @brief Es la encargada de obtener el numero menor del arreglo
  * @return El numero más peqeño del arreglo
  */
-int obtenerMenorNum();
+int obtenerMenorNum(int* arregloAuxiliar, int tamanioArreglo);
 
 /**
  * @brief Funcion encargada de la logica de la opcion 1
  * @return void
  */
-void manejoEstadisticas();
+void manejoEstadisticas(int* arregloAuxiliar, int tamanioArreglo);
 
 /**
  * @brief Es la encargada de desplegar el menu en pantalla y manejar esa logica
  * @return void
  */
-void menuPrincipal();
+void menuPrincipal(int* arregloAuxiliar, int tamanioArreglo);
 
 
 
