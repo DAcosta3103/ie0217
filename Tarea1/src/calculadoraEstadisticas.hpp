@@ -31,21 +31,29 @@
 
 
 
-// class Metodos {
+// class Estadisticas {
 //     public:
 //         int numero1, numero2; // Atributos de la funcion
 // 
-//         Metodos(int n1, int n2);
+//         Estadisticas(int n1, int n2);
 //         
 //         // Volvemos al metodo realizarOperacion, el cual sera el encargado de las operaciones matematicas
 //         virtual void realizarOperacion(int n1, int n2);
 // };
 // 
-// class Suma: public Metodos {
+// // Clase para la suma total
+// class Suma: public Estadisticas {
 //     public:
-//         Suma
+//         Suma(int n1, int n2);
+// 
+// 
+//         Suma operator+ (const Suma &s);
+// 
+//         void realizarOperacion()
+// 
 // }
 
+void obtenerArreglo();
 int sumaArreglo();
 int promedioArreglo();
 int maxArreglo();

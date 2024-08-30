@@ -6,6 +6,13 @@
 using namespace std;
 
 
+/**
+ * @brief Funcion encargada de obtener el arreglo digitado en terminal, 
+ * el cual esta guardado en argv[]
+ */
+void obtenerArreglo() {
+
+}
 
 /**
  * @brief Funcion encargada del menu principal. Contiene 3 opciones, las cuales por ahora son placeholder
@@ -51,26 +58,48 @@ void menuPrincipal() {
 
 }
 
+/**
+ * @brief Funcion para buscar los numeros en el arreglo
+ */
+void buscarNumero(int argc, char* argv[], int n) {
 
-void buscarNumero() {
 
-    int buscarNum;
+    int tamanioArreglo = argc - 1;          // El tamaño del arreglo auxiliar donde se guardaran los numeros ingresados
+    int arregloNumeros[tamanioArreglo];  // Se crea el arreglo auxiliar 'arregloNumeos'
+    int* punteroArreglo = arregloNumeros;   // Se crea un puntero en el inicio del arreglo de números
+    int numeroPorBuscar;
     cout << "Ingrese el numero que desea buscar en el arreglo: ";
-    cin >> buscarNum
+    cin >> numeroPorBuscar;
     // Ya tenemos el numero ingresado por el usuario en la variable buscarNum
+    // Ahora, debemos pasar lo que está en el arreglo argv[] al arreglo auxiliar que creamos
+
+
+    // Lo que se tenemos ingresado en (argv) lo pasamos a enteros y lo guardamos en el arreglo auxiliar
+    for (int i = 1; i < argc; ++i) {
+        arregloNumeros[i - 1] = atoi(argv[i]); // Se convierte empezando desde arg[1] ya que ese argumento es el nombre del programa, 
+        // pero se gaurda desde i=0 en el arreglo auxilair
+    }
 
     // Ahora recorremos el arreglo
     for (int i = 0; i < tamanioArreglo; i++) {
-        if (numeros[i] == buscarNum) {
-            cout << "El numero " << buscarNum << " efectivamente se encuentra en el arreglo";
-            break;
-        } else {
-            if (i == tamanioArreglo-1) {
-                cout << "El numero " << buscarNum << " no se encuentra en el arreglo";
-            }
+        if (arregloNumeros[i] == numeroPorBuscar) {
+            cout << "El numero " << numeroPorBuscar << " efectivamente se encuentra en el arreglo" << endl;
+            return;
         }
+
     }
 
+    // Si estamos fuera del for, es porque terminamos de recorrer el arreglo y no encontramos el numero por buscar
+    cout << "El número " << numeroPorBuscar << " no se encuentra en el arreglo." << endl;
+}
+    
+/**
+ * @brief Es la encargada de sumar los numeros del arreglo
+ * @return La suma total del arreglo
+ */
+int sumarArreglo() {
+    
+}
 
 
     // cout << "Números ingresados:" << endl;
@@ -78,5 +107,3 @@ void buscarNumero() {
     //     cout << "El número en la dirección " << i << " es " << numeros[i];
     // }
     // cout << endl;
-
-}
