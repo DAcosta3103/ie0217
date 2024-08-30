@@ -29,7 +29,7 @@ g++ conversorDeUnidades.cpp mainConversorDeUnidades.cpp -o conversor
 Se unen los dos archivos _.cpp_ y se crea un ejecutable usando el compilador. Note que estas instrucciones son para la línea de comandos de Ubuntu. También, debe tener en cuenta que se necesita un arreglo ingresado desde la línea de comandos, el cual puede tener una longitud y determinada por el usuario, pero deben ser números enteros. Las instrucciones son las siguientes, donde _a, b, c, ..., x, y, z_ representan números enteros:
 ```
 g++ calculadoraEstadisticas.cpp mainCalculadoraEstadisticas.cpp -o calculadora
-./calculadora a, b, c, ..., x, y, z         
+./calculadora a b c ... x y z         // No hay separador entre los numeros, solo espacio
 ```
 
 # Parte Teórica 
@@ -224,4 +224,220 @@ Estas dos funciones se llaman igual pero se diferencian de dos maneras: una devu
 
 [Sesión 1](https://youtu.be/TvvR8dhodHQ?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob)
 
+## 10. ¿Cuál es la diferencia entre una variable local y una local estática?
 
+La principal diferencia entre la variable local y la variable estática es que el valor de la variable estática persiste al final del programa.
+
+## Referencias:
+
+Presentación 1 de Introducción a C++ y la [Sesión 1](https://youtu.be/TvvR8dhodHQ?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob) del profe.
+
+## 11. ¿Qué es el type casting?
+
+Type casting se refiere a la accion de transformar una variable de un tipo a otro tipo, como por ejemplo de double a int. Existen de tipo explícita e implícita.
+
+1. **Ejemplo Implícito:**- El compilador convierte automáticamente un tipo de dato a otro si es necesario y seguro. No se requiere intervención del programador.
+
+```
+int main () {
+
+    // se le asigna un valor entero a la variable num_int
+    int num_int = 9;
+
+    // se declara una variable tipo doble
+
+    double num_double;
+
+    // conversion implicita
+    // se le asigna un valor entero a una variable doble
+
+    num_double = num_int;
+
+    cout << "num_int = " << num_int << endl;
+    cout << "num_double = " << num_double << endl;
+
+    return 0;
+}
+
+```
+
+2. **Ejemplo Explícito**: El programador convierte manualmente el tipo de dato usando sintaxis de C. Es el más flexible, pero también el menos seguro, ya que permite convertir entre tipos sin verificación estricta.
+
+```
+
+int main() {
+
+    // declaramos una variable de tipo doble
+    double num_double = 3.56;
+    cout << "num_double = " << num_double << endl;
+
+    // conversion estilo C de doble a entero
+    int num_int1 = (int)num_double;
+    cout << "num_int1 = " << num_int1 << endl;
+
+    // conversion estilo C de doble a entero
+    int num_int2 = int(num_double);
+    cout << "num_int2 = " << num_int2 << endl;
+
+    return 0;
+}
+```
+### Referencias:
+
+Los ejemplos fueron tomados de la sesión 3, pero la explicación fue referenciada de [Javapoint](https://www.javatpoint.com/type-casting-in-cpp)
+
+## 12. ¿Cuál es la principal diferencia entre un bucle ‘do-while’ y un bucle ‘while’?
+
+El bucle while empieza solo cuando se cumple una condición, y luego de eso el bucle se mantiene corriendo mientras se cumpla. Por otra parte, el bucle do-while siempre realiza una iteración y es hasta después de esta que tiene un condicional, si se cumple se vuelve a iterar el bucle, si no entonces se sigue.
+
+### Referencias
+
+La presentación #1 de introducción a C++ del profe, junto con el video de la [sesión 1](https://youtu.be/TvvR8dhodHQ?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob)
+
+
+## 13. Explique por qué es útil y común dividir el código en archivos .hpp, .cpp y main.cpp en C++. Describa el propósito específico de cada tipo de archivo.
+
+Lo principal es el orden que se mantiene, y también es común dejar las declaraciones separadas del archivo fuente para que eel código sea más fácil de cambiar en un futuro también 
+1. En el .hpp, van las declaraciones de las funciones, clases, constructores, métodos, etc. Se ponen los parámetros pero no las descripciones. 
+2. En el .cpp está el archivo fuente, el cuál tiene la descripción de todas las funciones excepto la main.
+3. El main.cpp solo va la función main, no es necesario que el archivo se llame main. A partir de esta función corre el programa.
+
+
+### Referencias:
+
+Presentación #2 sobre la introducción a C++ del profesor. Además, resulta útil escuchar la expliacación de la teoría en el [video de la sesión 3](https://youtu.be/dycqokbGZ3k?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob), o ver una [duda resuelta en Stack Overflow](https://stackoverflow.com/questions/41087485/how-to-divide-class-in-c-into-hpp-and-cpp-files)
+
+## 14. ¿Qué hace la sentencia ‘goto’ y por qué es considerada una mala práctica en la programación moderna? ¿Qué alternativas se pueden usar en su lugar?
+
+La sentencia 'goto' es una orden de tipo jump que se le da al programa para que salte a alguna etiqueta que uno settea. Es mala práctica porque se puede traer abajo la lógica del código o puede ser complicado manejarlo. En lugar de eso se podrían hacer funciones axiliares, jugar con _break_ y _continue_, o hasta implementar ciclos **for** o **while**.
+
+### Referencias:
+
+Presentación #2 sobre la introducción a C++ del profesor. Además, resulta útil escuchar la expliacación de la teoría en el [video de la sesión 3](https://youtu.be/dycqokbGZ3k?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob)
+
+## 15. ¿Para qué se utiliza la directiva ‘#ifndef’ y por qué es importante?
+
+Significa "if not defined", y siempre se pregunta al inicio del headerfile que si la definición que estamos haciendo existe. Si no existe, todo bien, se define; pero si sí existe entonces no entra a ese "if".
+
+### Referencias:
+
+[Esta página](https://www.cprogramming.com/reference/preprocessor/ifndef.html#:~:text=%23ifndef%20checks%20whether%20the%20given,is%20present%2C%20%23endif%20statement.) complementa bien el conocimiento adquirido al usar este tipo de programas.
+
+## 16. ¿Qué es un puntero y para qué es útil? ¿Cómo se declara e inicializa?
+
+Un puntero es un tipo variable que apunta a una dirección de memoria. Pueden tener distintos tipos, como punteros int, float, char, string, etc. La manera de declararlo es "tipoDeVariable* puntero", por ejemplo "int* puntero". La manera de inicializarlo es igualarlo a una dirección de memoria, lo cual normalmente se hace con &. Por ejemplo: "puntero = &var1" es un puntero de tipo entero que apunta a la dirección de memoria donde está guardada var1.
+
+```
+// tipos de punteros, inicializados con el asterisco(*) para demostrar que son tipo puntero
+
+char* ptr1;
+int* ptr2:
+
+int* ptr3;
+ptr3 = &var1    // almacena la direccion en memoria de var1 dentro de ptr3
+cout << "el valor de var1 es" << *ptr3 << endl;     // *ptr3 es el puntero de-referenciado, por lo que me dice el valor almacenado en la ubicacion del pointer
+```
+## Referencias
+
+Presentación #2 sobre la introducción a C++ del profesor. Además, resulta útil escuchar la expliacación de la teoría en el [video de la sesión 3](https://youtu.be/dycqokbGZ3k?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob).
+
+## 17. ¿Cuál es la diferencia entre pasar parámetros por valor, por referencia y por puntero?
+
+Al pasar un parámetro como **valor** se pasa una copia de este y el original no se ve afectado.
+Por otra parte, si se usan de **referencia o puntero**, puede llegar a afectar el valor original, pero los punteros usan la dirección de memoria. Además, normalmente uno sabe que en el peor de los casos puede volver a inicializar el puntero o referencia en 0.
+
+### Referencias
+
+Presentación 1 de Introducción a C++ y la [Sesión 2](https://youtu.be/TvvR8dhodHQ?list=PLYVKm6dCj8SstdJH)
+
+## 18. Cuando se usa un puntero para apuntar a un arreglo en C++, ¿a qué valor o direcciónapunta inicialmente? Describa cómo sería la forma de acceder a todos los datos de ese arreglo mediante el puntero
+
+Cuando se apunta a un arreglo el puntero apunta al inicio del arreglo (arg[0]), y la manera de acceder a los datos es mediante un ciclo for y  de-referenciando el puntero. Se hace un ciclo for que aumente en 1 el puntero cada iteración, de modo que se va recorriendo (array[puntero++]), y podemos obtener el dato en esa dirección con la sintaxis "*puntero", lo cual representa el valor guardado en la dirección a la cual apunta puntero 
+
+### Referencia:
+
+Trabajo realizado en clase, o presentación sobre punteros del profesor, junto con su [video](https://youtu.be/dycqokbGZ3k?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob) de la sesión 2.
+
+## 19. ¿En qué caso es conveniente usar el operador ‘->’ en punteros y por qué es beneficioso?
+
+Cuando se está trabajando con clases es recomendable usar el operador -> junto con la palabra reservada 'this'. De esta manera, el compilador sabe que estamos hablando de *esta* clase, y la dirección en la que está guardado el atributo con el que estamos tratando. El operador 'flechita' es mejor para clases.
+
+### Referencias:
+
+Más información sobre [el operador flechita](https://www.educative.io/answers/what-is-the-arrow-operator-in-c-cpp)
+
+## 20. ¿Cuál es la manera de implementar punteros dobles, triples, etc? Brinde un ejemplo de en qué caso sería beneficioso usar esta implementación.
+
+### Implementación
+- **Puntero doble**: Es un puntero que apunta a otro puntero.
+- **Puntero triple**: Es un puntero que apunta a un puntero doble, y así sucesivamente.
+La manera de obtener un puntero que apunta a otro, es solo igualar el punteroDoble par a que apunte a la dirección del otro
+
+#### Ejemplo de puntero doble
+```cpp
+int x = 10;
+int *p = &x;      // Puntero simple a 'x'
+int **pp = &p;    // Puntero doble a 'p'
+```
+Un uso beneficioso sería con matrices, ya que se necesita conocer la dirección del puntero principal, y eso se puede hacer con otro puntero
+
+### Referencias:
+
+Presentación #2 sobre la introducción a C++ del profesor. Además, resulta útil escuchar la expliacación de la teoría en el [video de la sesión 3](https://youtu.be/dycqokbGZ3k?list=PLYVKm6dCj8SstdJHy0h7SRPF0L1coOZob).
+
+## 21. ¿Qué es el puntero this en C++?
+
+Cuando se usa 'this' es porque estamos trabajando con punteros que apuntan a atributos en clases. Al usar 'this', el compilador sabe que estamos hablando de *esta* clase, y la dirección en la que está guardado el atributo con el que estamos tratando.
+
+## 22. ¿Qué es un puntero nullptr? 
+
+Cuándo apunta al final de un string o a 'nada'. Básicamente apunta a NULL y se usa cuando se necesita tomar en cuenta el valor 'NULL' para la lógica del programa.
+
+### Referencias:
+
+[CPlusPlus pointers](https://cplusplus.com/doc/tutorial/pointers/)
+
+## 23. ¿Qué es una función prototipo
+
+El prototipo de una función es cuando se declara una función pero solo se instancia cuáles serán sus parámetros, no el cuerpo de esta misma. Normalmente se declara un prototipo si la función se requiere en una línea pero aún no ha sido descrita.
+
+### Referencias
+
+Presentación 1 de Introducción a C++ y la [Sesión 2](https://youtu.be/TvvR8dhodHQ?list=PLYVKm6dCj8SstdJH)
+
+## 24. ¿Dónde y cómo se guardan las variables que se crean en C++? Explique la diferencia entre el almacenamiento de variables locales y globales.
+
+Las **variables locales** se crean dentro de una función o un bloque de código y se almacenan en la _pila_ (stack). Estas variables existen solo durante la ejecución de la función o bloque donde fueron declaradas. Cuando la función termina, las variables locales se destruyen y la memoria se libera.
+
+Por otra parte, las variables globales se crean fuera de cualquier función y se almacenan en la zona de datos del programa. Estas variables están disponibles en todo el programa, es decir, pueden ser accedidas desde cualquier función. La memoria para las variables globales se asigna una vez cuando el programa inicia y se libera cuando el programa termina.
+
+### Referencias:
+
+[Geeks for geekss](https://www.geeksforgeeks.org/scope-of-variables-in-c/)
+
+
+## 25
+
+Un **memory leak** (fuga de memoria) ocurre cuando un programa reserva memoria dinámica (por ejemplo, utilizando `new` en C++), pero no libera esta memoria adecuadamente después de que ya no es necesaria. Como resultado, la memoria sigue ocupada y no está disponible para otros usos, lo que puede llevar a un agotamiento de memoria y a un rendimiento deficiente o incluso a un fallo del programa. Algunas causas comúnes pueden ser:
+1. No liberar memoria 
+2. Pérdida de punteros
+
+### Referencias:
+
+[Geeks for geekss](https://www.geeksforgeeks.org/memory-leak-in-c-and-how-to-avoid-it/)
+
+## 26. ¿Qué es memoria dinámica?
+
+La **memoria dinámica** se refiere a la memoria que se asigna durante la ejecución del programa, es decir, en tiempo de ejecución. Esta memoria se maneja mediante funciones o operadores que permiten reservar y liberar bloques de memoria según las necesidades del programa. Se utiliza cuando el tamaño de los datos no se conoce en tiempo de compilación o cuando se necesita una cantidad variable de memoria.
+
+## Referencias:
+
+En este link se tiene explicada la [diferencia entre memorias](https://www.geeksforgeeks.org/difference-between-static-and-dynamic-memory-allocation-in-c/)
+
+## 27. ¿Qué es memoria estática?
+
+La **memoria estática** se refiere a la memoria que se asigna en tiempo de compilación y permanece durante toda la vida del programa. Esto incluye variables globales, estáticas y constantes. Este tipo de memoria nos resulta útil para variables que necesitan mantener su valor a lo largo de la vida del programa o que deben ser accesibles desde cualquier parte del código.
+
+## Referencias:
+
+En este link se tiene explicada la [diferencia entre memorias](https://www.geeksforgeeks.org/difference-between-static-and-dynamic-memory-allocation-in-c/)
