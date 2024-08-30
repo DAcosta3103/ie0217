@@ -31,36 +31,56 @@
 
 
 
-// class Estadisticas {
-//     public:
-//         int numero1, numero2; // Atributos de la funcion
-// 
-//         Estadisticas(int n1, int n2);
-//         
-//         // Volvemos al metodo realizarOperacion, el cual sera el encargado de las operaciones matematicas
-//         virtual void realizarOperacion(int n1, int n2);
-// };
-// 
-// // Clase para la suma total
-// class Suma: public Estadisticas {
-//     public:
-//         Suma(int n1, int n2);
-// 
-// 
-//         Suma operator+ (const Suma &s);
-// 
-//         void realizarOperacion()
-// 
-// }
 
-void obtenerArreglo();
-int sumaArreglo();
-int promedioArreglo();
-int maxArreglo();
-int minArreglo();
+/**
+ * @brief Funcion encargada de obtener el arreglo digitado en terminal, el cual esta guardado en argv[]
+ * @param argc Representa el numero de argumentos pasados en la linea de comandos 
+ * @param argv Un arreglo que contiene los argumentos pasados en la linea de comandos
+ * @param arregloAuxiliar El arreglo donde se ingresaran los numeros del arreglo argv
+ * @return void
+ */
+void obtenerArreglo(int argc, char* argv[], int* arregloAuxiliar);
 
+/**
+ * @brief Funcion para buscar un número en el arreglo
+ * @return void
+ */
 void buscarNumero();
 
+/**
+ * @brief Es la encargada de sumar los numeros del arreglo
+ * @return La suma total del arreglo
+ */
+int sumarArreglo();
+
+/**
+ * @brief Es la encargada de obtener el promedio total del arreglo
+ * @return El promedio del arreglo
+ */
+int promedioArreglo();
+
+/**
+ * @brief Es la encargada de obtener el numero mayor del arreglo
+ * @return El número más grande del arreglo
+ */
+int obtenerMayorNum();
+
+/**
+ * @brief Es la encargada de obtener el numero menor del arreglo
+ * @return El numero más peqeño del arreglo
+ */
+int obtenerMenorNum();
+
+/**
+ * @brief Funcion encargada de la logica de la opcion 1
+ * @return void
+ */
+void manejoEstadisticas();
+
+/**
+ * @brief Es la encargada de desplegar el menu en pantalla y manejar esa logica
+ * @return void
+ */
 void menuPrincipal();
 
 
