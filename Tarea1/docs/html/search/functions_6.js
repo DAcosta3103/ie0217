@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['unidadstring_56',['unidadString',['../conversorDeUnidades_8cpp.html#a6ecd78e1821f1a18e29eed77573a6f50',1,'unidadString(OpcionesLongitud op):&#160;conversorDeUnidades.cpp'],['../conversorDeUnidades_8cpp.html#a31ffceb67b79d6b84d9453cb8a2a3823',1,'unidadString(OpcionesPeso op):&#160;conversorDeUnidades.cpp'],['../conversorDeUnidades_8cpp.html#a09f313cce599fde1d6d8b6afbcdd0955',1,'unidadString(OpcionesTemperatura op):&#160;conversorDeUnidades.cpp'],['../conversorDeUnidades_8hpp.html#a6ecd78e1821f1a18e29eed77573a6f50',1,'unidadString(OpcionesLongitud op):&#160;conversorDeUnidades.cpp'],['../conversorDeUnidades_8hpp.html#a31ffceb67b79d6b84d9453cb8a2a3823',1,'unidadString(OpcionesPeso op):&#160;conversorDeUnidades.cpp'],['../conversorDeUnidades_8hpp.html#a09f313cce599fde1d6d8b6afbcdd0955',1,'unidadString(OpcionesTemperatura op):&#160;conversorDeUnidades.cpp']]]
+];

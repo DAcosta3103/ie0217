@@ -28,7 +28,7 @@
 #include "calculadoraEstadisticas.hpp"
 #include <iostream>
 #include <string>
-
+#include <cstdlib> 
 
 using namespace std;
 
@@ -37,11 +37,9 @@ using namespace std;
  * @return void
  */
 void obtenerArreglo(int argc, char* argv[], int* arregloAuxiliar) {
-    // Transferimos los elementos de argv[] al arreglo auxiliar
-    for (int i = 1; i < argc;i++) { // Comenzamos desde i = 1 para omitir el nombre del programa (argv[0])
-        arregloAuxiliar[i - 1] = atoi(argv[i]); // Convertimos cada argumento a entero y lo almacenamos en el arreglo auxiliar
+    for (int i = 1; i < argc;i++) { 
+        arregloAuxiliar[i - 1] = atoi(argv[i]); 
     }
-
 }
 
 /**
@@ -53,20 +51,13 @@ void buscarNumero(int* arregloAuxiliar, int tamanioArreglo) {
     int* pointerMain = arregloAuxiliar;
     cout << "\nIngrese el numero que desea buscar en el arreglo: ";
     cin >> numeroPorBuscar;
-    // Ya tenemos el numero ingresado por el usuario en la variable numeroPorBuscar
-    
-    // Ahora recorremos el arreglo
     for (int i = 0; i < tamanioArreglo; i++) {
         if (*pointerMain == numeroPorBuscar) {
             cout << "\nEl numero " << numeroPorBuscar << " efectivamente se encuentra en el arreglo" << endl;
-            return;     // Salimos del for y terminamos la función
+            return;     
         }
-        // Si no entramos al if, entonces solo aumentamos de iteracion y seguimos buscando
         pointerMain++;
-
-    }
-
-    // Si estamos fuera del for, es porque terminamos de recorrer el arreglo y no encontramos el numero por buscar
+    }    
     cout << "\nEl número " << numeroPorBuscar << " no se encuentra en el arreglo." << endl;
 }
     
@@ -80,7 +71,7 @@ int sumarArreglo(int* arregloAuxiliar, int tamanioArreglo) {
 
     for (int i = 0; i < tamanioArreglo; i++) {
         sumaTotal += *pointerMain;
-        pointerMain++;      // Aumentamos en uno el puntero pointerMain, donde arreglo[pointerMain]
+        pointerMain++;      
     }
     return sumaTotal;
 }
@@ -144,7 +135,6 @@ void manejoEstadisticas(int* arregloAuxiliar, int tamanioArreglo) {
     cout << "El promedio de los números del arreglo es: " << promedioArreglo(arregloAuxiliar, tamanioArreglo) << ".\n";
     cout << "El número mayor del arreglo es: " << obtenerMayorNum(arregloAuxiliar, tamanioArreglo) << ".\n";
     cout << "El número menor del arreglo es: " << obtenerMenorNum(arregloAuxiliar, tamanioArreglo) << ".\n";
-
     }
 
 
@@ -164,9 +154,6 @@ void menuPrincipal(int* arregloAuxiliar, int tamanioArreglo) {
     cout << "3. Salir\n";
     cout << "Seleccione una opción: ";
     cin >> opcion;
-    
-    // Manejamos los casos con las opciones correctas
-    
         switch (opcion) {
             case 1: 
             manejoEstadisticas(arregloAuxiliar, tamanioArreglo); 
@@ -189,6 +176,6 @@ void menuPrincipal(int* arregloAuxiliar, int tamanioArreglo) {
             break;
 
         }
-    } while (!opcionValida || opcion != 3);  // opcionValida = false solo en el caso donde el usuario ingresa una opción no permitida
+    } while (!opcionValida || opcion != 3);  
 
 }

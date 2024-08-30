@@ -1,6 +1,6 @@
 /**
  * @file mainConversorDeUnidades.cpp
- * @brief ARchivo main del script para el conversor de unidades de longitud, peso y temperatura.
+ * @brief Archivo main del script para el conversor de unidades de longitud, peso y temperatura.
  * 
  * MIT License
 

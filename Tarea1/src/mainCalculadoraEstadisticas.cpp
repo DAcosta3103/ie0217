@@ -27,31 +27,38 @@
 
 #include "calculadoraEstadisticas.hpp"
 #include <iostream>
+#include <cstdlib> 
+
 
 
 
 
 using namespace std;
 
-// Funcion main
-
+/**
+ * @brief Funcion main, para inicializar el programa, la cual solicita que haya un string de enteros en la linea de comando
+ * @param argc Este espacio reservado de C++ almacena el numero de parametros ingresados en la linea de comando, incluyendo el nombre dle programa al inicio
+ * @param argv Guarda en un arreglo de caracteres lo que se ingreso en la linea de comandos a la hora de  ejecutar el codigo
+ * @return 0
+ */
 int main(int argc, char* argv[]) {
 
-    // Verificar si se han pasado al menos un argumento (además del nombre del programa, el cual cuenta como 1)
+    
     if (argc < 2) {
         cerr << "Por favor, ingrese al menos un numero entero para crear el arreglo." << endl;
-        return 1;  // Deja de correr el programa con un código de error
+        return 1;  
     }
 
 
     
-    int tamanioArreglo = argc - 1;      // Obtener el número de argumentos (excluyendo el nombre del programa)
-    int* arregloNumeros = new int[tamanioArreglo];   // Se crea un arreglo dentro en la memoria para que sea llenado por el script con los numeros ingresados
+    int tamanioArreglo = argc - 1;      
+    int* arregloNumeros = new int[tamanioArreglo];   
      
 
     /**
      * Se llama a la funcion obtenerArreglo, la cual pasa los numeros guardados de argv
      * hacia arregloNumeros
+     * luego se llama al menu
      */
     obtenerArreglo(argc, argv, arregloNumeros); 
     menuPrincipal(arregloNumeros, tamanioArreglo);

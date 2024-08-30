@@ -36,13 +36,13 @@ using namespace std;
  * Enumeración y estructura para las opciones de unidades de longitud.
  */
 enum struct OpcionesLongitud {
-    metro = 1, /**< OpcionesLongitud value metro. */  
-    kilometro, /**< OpcionesLongitud value kilometro. */
-    milimetro, /**< OpcionesLongitud value milimetro. */  
-    centimetro, /**< OpcionesLongitud value centimetro. */
-    milla, /**< OpcionesLongitud value milla. */
-    pie, /**< OpcionesLongitud value pie. */
-    pulgada /**< OpcionesLongitud value pulgada. */
+    metro = 1,      /**< OpcionesLongitud value metro. */  
+    kilometro,      /**< OpcionesLongitud value kilometro. */
+    milimetro,      /**< OpcionesLongitud value milimetro. */  
+    centimetro,     /**< OpcionesLongitud value centimetro. */
+    milla,          /**< OpcionesLongitud value milla. */
+    pie,            /**< OpcionesLongitud value pie. */
+    pulgada         /**< OpcionesLongitud value pulgada. */
 };
 
 
@@ -51,24 +51,22 @@ enum struct OpcionesLongitud {
  */
 
 enum struct OpcionesPeso {
-    gramo = 1, /**< OpcionesPeso value gramo. */  
-    kilogramo, /**< OpcionesPeso value kilogramo. */
-    miligramo, /**< OpcionesPeso value miligramo. */
-    libra, /**< OpcionesPeso value libra. */
-    tonelada, /**< OpcionesPeso value tonelada. */
-    onza /**< OpcionesPeso value onza. */
+    gramo = 1,      /**< OpcionesPeso value gramo. */  
+    kilogramo,      /**< OpcionesPeso value kilogramo. */
+    miligramo,      /**< OpcionesPeso value miligramo. */
+    libra,          /**< OpcionesPeso value libra. */
+    tonelada,       /**< OpcionesPeso value tonelada. */
+    onza            /**< OpcionesPeso value onza. */
 };
 
 
 /**
  * Enumeración y estructura para las opciones de unidades de tempe
  */
-
-
 enum struct OpcionesTemperatura {
-    celsius = 1, /**< OpcionesTemperatura value celsius. */
-    fahrenheit, /**< OpcionesTemperatura value fahrenheit. */
-    kelvin /**< OpcionesTemperatura value kelvin. */
+    celsius = 1,        /**< OpcionesTemperatura value celsius. */
+    fahrenheit,         /**< OpcionesTemperatura value fahrenheit. */
+    kelvin              /**< OpcionesTemperatura value kelvin. */
 };
 
 

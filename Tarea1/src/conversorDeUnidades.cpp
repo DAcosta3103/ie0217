@@ -1,6 +1,14 @@
 /**
  * @file conversorDeUnidades.cpp
  * @brief Archivo fuente del script para el conversor de unidades de longitud, peso y temperatura. 
+ * 
+ * Para poder desplegarle al usuario con qué unidades está trabajando, se aplica una sobrecarga de funciones a * tres funciones  
+ * 'unidadString' distintas, las cuales reciben parámetros de longitud, peso o temperatura. 
+ * La lógica que las funciones conversoras manejan es la siguiente: el usuario elige un valor x, y luego el usuario elige qué unidad quiere * que tenga x.
+ * Sin embargo, lo que pasa por debajo (y sobre lo que no se entera el usuario) es que independientemente de la unidad del valor ingresado,
+ * el valor se transforma a la unidad base para realizar el cálculo: metro para longitud, gramo para peso y celsius para temperatura.
+ * Es a partir de esta unidad base que se realiza el cálculo, y finalmente se pasa la unidad base a la unidad escogida por el usuario
+ * 
  * MIT License
 
  * Copyright (c) 2024 DAcosta3103
@@ -31,11 +39,6 @@
 #include <string>
 
 using namespace std;
-
- /**
-  * Para poder desplegarle al usuario con qué unidades está trabajando, se aplica una sobrecarga de funciones a * tres funciones  
-  * 'unidadString' distintas, las cuales reciben parámetros de longitud, peso o temperatura. 
-  */
 
 /**
  * @brief Función para convertir opciones de longitud a su respectivo string 
@@ -88,17 +91,6 @@ string unidadString(OpcionesTemperatura op) {
     }
 }
 
-
-
-/** 
- * La lógica que las funciones conversoras manejan es la siguiente: el usuario elige un valor x, y luego el usuario elige qué unidad quiere * que tenga x.
- * Sin embargo, lo que pasa por debajo (y sobre lo que no se entera el usuario) es que independientemente de la unidad del valor ingresado,
- * el valor se transforma a la unidad base para realizar el cálculo: metro para longitud, gramo para peso y celsius para temperatura.
- * Es a partir de esta unidad base que se realiza el cálculo, y finalmente se pasa la unidad base a la unidad escogida por el usuario
-*/ 
-
-
-
 /**
  * @brief Función para calcular conversiones de longitud 
  * @return void
@@ -123,9 +115,9 @@ void convertirUnidadesLongitud() {
         cout << "7. Pulgadas\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
-        unidadBase = static_cast<OpcionesLongitud>(opcion);     // Se asigna la opción escogida a una variable del tipo de enum struct deseado
+        unidadBase = static_cast<OpcionesLongitud>(opcion);     
 
-        // Se maneja ĺa opción escogida por casos
+        
         switch (unidadBase) {
             case OpcionesLongitud::metro:
                 metros = valor;
@@ -276,7 +268,7 @@ void convertirUnidadesPeso() {
         }
     } while (!opcionValida);
 
-    opcionValida = false;   // se pone en falso para así volver a entrar al bucle después
+    opcionValida = false;   
 
     do {
         cout << "\nAhora, elija el número de opción de la unidad a la cual desea convertir el valor " << valor << " " << unidadString(unidadBase) << endl;
@@ -424,7 +416,7 @@ void menuPrincipal() {
     cout << "Seleccione una opción: ";
     cin >> opcion;
     
-    // Manejamos los casos con las opciones correctas
+    
     
         switch (opcion) {
             case 1: 
@@ -453,7 +445,7 @@ void menuPrincipal() {
             break;
 
         }
-    } while (!opcionValida);  // opcionValida = false solo en el caso donde el usuario ingresa una opción no permitida
+    } while (!opcionValida);  
 
 }
 
