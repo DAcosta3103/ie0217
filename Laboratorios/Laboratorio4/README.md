@@ -20,6 +20,15 @@ g++ -o build/arboles src/main.cpp
 ./build/arboles
 ```
 
+Si no se tiene una carpeta 'build' creada anteriormente, se puede crear el ejecutable directamente en la carpeta principal del código:
+
+```
+cd Arboles/
+g++ -o arboles src/main.cpp
+./arboles
+```
+
+
 
 ## Funcionamiento del código de Listas
 
@@ -35,4 +44,12 @@ Para correr los códigos, facilita el trabajo estar en la carpeta respectiva par
 cd Listas/
 g++ -o build/listas src/main.cpp
 ./build/listas
+```
+
+Si no se tiene una carpeta 'build' creada anteriormente, se puede crear el ejecutable directamente en la carpeta principal del código:
+
+```
+cd Listas/
+g++ -o listas src/main.cpp
+./listas
 ```
