@@ -14,9 +14,10 @@ class Cliente {
         string nombre;
         vector<Producto*> carrito;       // vector de tipo puntero de Producto
         
-        Cliente(string nombre) : nombre(nombre)  {}        // el constructor solo inicializa el nombre, ya que 'carrito' como tal no se puede inicializar por el usuario
+        Cliente(string& nombre) : nombre(nombre)  {}        // el constructor solo inicializa el nombre, ya que 'carrito' como tal no se puede inicializar por el usuario
 
-        void agregarProducto(Producto* producto) {
+        // función para agregar un producto al carrito
+        void agregarProducto(Producto* producto) {          
            carrito.push_back(producto);
         }
 
@@ -37,7 +38,7 @@ class Cliente {
                 cout << "No hay elementos en el carrito.";
             } else {
                 for (Producto* producto : carrito) {
-                    cout << producto->getNombre() << endl;
+                    producto->mostrarInfo();
                 }
             }
         }
@@ -49,7 +50,7 @@ class Cliente {
  */
 class ClienteRegular: public Cliente {
     public:
-        ClienteRegular(string nombre) : Cliente(nombre) {}
+        ClienteRegular(string& nombre) : Cliente(nombre) {}
 
         double aplicarDescuento(double valor) const override {
             return Cliente::calcularTotal();
@@ -64,7 +65,7 @@ class ClientePremium: public Cliente {
     public:
         double descuento;
 
-        ClientePremium(string nombre, double descuento) : Cliente(nombre), descuento(descuento) {}
+        ClientePremium(string& nombre, double descuento) : Cliente(nombre), descuento(descuento) {}
 
         double aplicarDescuento(double valor) const override {
             descuento = valor * 0.01;

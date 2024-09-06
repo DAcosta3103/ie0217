@@ -10,15 +10,15 @@ class Tienda {
         vector<Producto*> productosDisponibles;
         vector<Cliente*> clientes;
 
-        void agregarProducto(string productoNuevo) {
+        void agregarProducto(Producto* productoNuevo) {
             productosDisponibles.push_back(productoNuevo);
         }
 
-        void agregarCliente(string clienteNuevo) {
+        void agregarCliente(Cliente* clienteNuevo) {
             clientes.push_back(clienteNuevo);
         }
 
-        void procesarCompra(const string nombreCliente) {
+        void procesarCompra(const string& nombreCliente) {
             Cliente* cliente = nullptr;
 
             for (Cliente* clnt: clientes) {

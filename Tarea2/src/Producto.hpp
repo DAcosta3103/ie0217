@@ -16,7 +16,7 @@ class Producto {
         string nombre;
         double precio;
         
-        Producto(string nombre, double precio) : nombre(nombre), precio(precio) {}
+        Producto(string& nombre, double precio) : nombre(nombre), precio(precio) {}
 
         double getPrecio() const {
             return precio;
@@ -25,6 +25,9 @@ class Producto {
         string getNombre() const {
             return nombre;
         }
+
+        virtual void mostrarInfo() const = 0;
+        
 };
 
 /**
@@ -36,10 +39,14 @@ class ProductoDigital: public Producto {
     public:
         int id;
 
-        ProductoDigital(string nombre, double precio, int id) : Producto(nombre, precio), id(id) {}
+        ProductoDigital(string& nombre, double precio, int id) : Producto(nombre, precio), id(id) {}
 
         int getID() const {
             return id;
+        }
+
+        void mostrarInfo() const override {
+            cout << "Producto Digital - Nombre: " << nombre << ", Precio: " << precio << ", ID: " << id << endl;
         }
 
 };
@@ -52,11 +59,16 @@ class ProductoFisico: public Producto {
     public:
         double peso;
 
-        ProductoFisico (string nombre, double precio, double peso): Producto(nombre, precio), id(id) {}
+        ProductoFisico(string& nombre, double precio, double peso): Producto(nombre, precio), id(id) {}
 
         double getPeso() const {
             return peso;
         }      
+
+        void mostrarInfo() const override {
+            cout << "Producto Físico - Nombre: " << nombre << ", Precio: " << precio << ", Peso: " << peso << endl;
+        }
+
 };
 
 #endif //PRODUCTO_HPP

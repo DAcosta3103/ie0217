@@ -7,20 +7,21 @@ int main() {
     int opcion = 0;
     int id;
     double precio, peso, descuento;
-    string nombre;
+    string nombre, nombreProducto;
     bool opcionValida;
 
     
     // a continuación se escribe el menú principal 
 
-    cout << "¡Bienvenido al menú de la tienda virtual Fashion La Bajura!\n";
-    cout << "1. Agregar producto\n";
-    cout << "2. Registrar cliente\n";
-    cout << "3. Agregar producto al carrito\n";
-    cout << "4. Procesar compra\n";
-    cout << "5. Salir\n";
-    cout << "Por favor, elija una opción para continuar.\n";
-    cin >> opcion;
+    do {
+        cout << "¡Bienvenido al menú de la tienda virtual Fashion La Bajura!\n";
+        cout << "1. Agregar producto\n";
+        cout << "2. Registrar cliente\n";
+        cout << "3. Agregar producto al carrito\n";
+        cout << "4. Procesar compra\n";
+        cout << "5. Salir\n";
+        cout << "Por favor, elija una opción para continuar.\n";
+        cin >> opcion;
 
 
         switch (opcion) {
@@ -74,11 +75,63 @@ int main() {
                 break;
 
             case 3:
-                cout << "\nIngrese el nombre del cliente dueño del carrito al que desea añadir un producto: ";
+            
+                Cliente* cliente = nullptr;
+                Producto* producto = nullptr;
+
+                cout << "\nIngrese el nombre del cliente dueño del carrito al cual desea añadir un producto: ";
                 cin >> nombre;
-                
+
+                // loop para recorrer el vector de clientes y buscar el cliente elegido
+                for (Cliente* clnt: tienda.clientes) {
+                    if (clnt->getNombre() == nombre) {
+                        cliente = clnt;
+                        break;
+                    } 
+                }
+
+                if (cliente) {
+                    cout << "\nIngrese el nombre del producto que desea añadir al carrito: ";
+                    cin >> nombreProducto;
+
+                    // loop para recorrer el vector de productos disponibles y buscar el producto por añadir
+                    for (Producto* prdct: tienda.productosDisponibles) {
+                        if (prdct->getNombre() == nombreProducto) {
+                            producto = prdct;
+                            cliente->agregarProducto(producto);
+                            cout << "El producto ha sido agregado exitósamente." << endl;
+                            break;
+                        }
+                    } 
+                } else {
+                        cout << "El cliente no se pudo encontrar en la base de datos." << endl;
+                }
+
+                if (!producto) { cout << "El producto no se pudo encontrar en la base de datos." << endl; }
+
+                opcionValida = true;
+                break;
+
+            case 4:
+                cout << "Ingrese el nombre del cliente cuyo carrito quiere procesar para compra: ";
+                cin >> nombre;
+
+                tienda.procesarCompra(nombre);
+                opcionValida = true;
+                break;
+
+            case 5:
+                cout << "Saliendo del menú..." << endl;
+                break;
 
 
-        } while (!opcionValida);  
+
+            default: 
+                cout << "\nOpción no válida. Intente de nuevo." << endl;
+                opcionValida = false;
+                break;
+        }
+
+    } while (!opcionValida || opcion != 5);  
 
 }
