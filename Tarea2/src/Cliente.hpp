@@ -21,6 +21,10 @@ class Cliente {
            carrito.push_back(producto);
         }
 
+        string getNombre() const {
+            return nombre;
+        }
+
         virtual double aplicarDescuento(double valor) const = 0;      
 
         double calcularTotal() const {
@@ -68,10 +72,10 @@ class ClientePremium: public Cliente {
         ClientePremium(string& nombre, double descuento) : Cliente(nombre), descuento(descuento) {}
 
         double aplicarDescuento(double valor) const override {
-            descuento = valor * 0.01;
+            valor *= 0.01;
             double total = Cliente::calcularTotal();
             
-            return (total - total * descuento);     // retorna el valor de la compra con el descuento aplicado
+            return (total - total * valor);     // retorna el valor de la compra con el descuento aplicado
         }
 };
 

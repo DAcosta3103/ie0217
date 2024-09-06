@@ -59,7 +59,7 @@ class ProductoFisico: public Producto {
     public:
         double peso;
 
-        ProductoFisico(string& nombre, double precio, double peso): Producto(nombre, precio), id(id) {}
+        ProductoFisico(string& nombre, double precio, double peso): Producto(nombre, precio), peso(peso) {}
 
         double getPeso() const {
             return peso;

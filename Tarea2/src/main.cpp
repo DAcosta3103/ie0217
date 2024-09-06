@@ -8,8 +8,9 @@ int main() {
     int id;
     double precio, peso, descuento;
     string nombre, nombreProducto;
-    bool opcionValida;
-
+    bool opcionValida;            
+    Cliente* cliente = nullptr;
+    Producto* producto = nullptr;
     
     // a continuación se escribe el menú principal 
 
@@ -34,10 +35,10 @@ int main() {
                 cin >> tipoProducto;
 
                 cout << "Ingrese el nombre del producto: ";
-                cin << nombre;
+                cin >> nombre;
 
                 cout << "Ingrese el precio del producto: ";
-                cin << precio;
+                cin >> precio;
 
                 if (tipoProducto == 1) {
                     cout << "Ingrese el ID del producto: ";
@@ -56,12 +57,12 @@ int main() {
                 int tipoCliente;
                 cout << "Qué tipo de cliente desea agregar?\n";
                 cout << "1. Cliente regular\n";
-                cout << "2. Cliente físico\n";
+                cout << "2. Cliente premium\n";
                 cout << "Por favor elija el número respectivo a la opción que desea.\n";
                 cin >> tipoCliente;
 
                 cout << "Ingrese el nombre del cliente: ";
-                cin << nombre;
+                cin >> nombre;
 
                 if (tipoCliente == 1) {
                     tienda.agregarCliente(new ClienteRegular(nombre));
@@ -75,9 +76,7 @@ int main() {
                 break;
 
             case 3:
-            
-                Cliente* cliente = nullptr;
-                Producto* producto = nullptr;
+
 
                 cout << "\nIngrese el nombre del cliente dueño del carrito al cual desea añadir un producto: ";
                 cin >> nombre;
