@@ -102,9 +102,9 @@ class ProductoDigital: public Producto {
         /**
          * @brief Construtor para la clase Producto Digital
          * 
-         * @param nombre 
-         * @param precio 
-         * @param id 
+         * @param nombre Nombre del producto digital
+         * @param precio Precio del producto digital
+         * @param id ID del producto digital
          */
         ProductoDigital(string& nombre, double precio, int id) : Producto(nombre, precio), id(id) {}
 
@@ -142,9 +142,9 @@ class ProductoFisico: public Producto {
         /**
          * @brief Construtor para la clase Producto Fisico
          * 
-         * @param nombre 
-         * @param precio 
-         * @param peso 
+         * @param nombre Nombre del producto físico
+         * @param precio Precio del producto físico
+         * @param peso Peso del producto físico
          */
         ProductoFisico(string& nombre, double precio, double peso): Producto(nombre, precio), peso(peso) {}
 

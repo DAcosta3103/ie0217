@@ -2,8 +2,18 @@
 
 using namespace std;
 
+
+/**
+ * @brief Función principal que ejecuta el menú de la tienda virtual.
+ * 
+ * Esta función contiene un menú interactivo que permite al usuario realizar varias operaciones
+ * relacionadas con la tienda, tales como agregar productos, registrar clientes, añadir productos
+ * al carrito y procesar compras. 
+ * 
+ * @return 0
+ */
 int main() {
-    Tienda tienda;  // declaramos nuesta tienda
+    Tienda tienda;  /*!< declaramos nuesta tienda >*/ 
     int opcion = 0;
     int id;
     double precio, peso, descuento;
@@ -12,7 +22,7 @@ int main() {
     Cliente* cliente = nullptr;
     Producto* producto = nullptr;
     
-    // a continuación se escribe el menú principal 
+    
 
     do {
         cout << "\n¡Bienvenido al menú de la tienda virtual Fashion La Bajura!\n";
@@ -24,7 +34,7 @@ int main() {
         cout << "Por favor, elija una opción para continuar.\n";
         cin >> opcion;
 
-        // se atiende cada caso con 
+        /*!< se atiende cada caso con >*/ 
         switch (opcion) {
             
             case 1: 
@@ -86,7 +96,7 @@ int main() {
                 cout << "\nIngrese el nombre del cliente dueño del carrito al cual desea añadir un producto: ";
                 cin >> nombre;
 
-                // loop para recorrer el vector de clientes y buscar el cliente elegido
+                /*!< loop para recorrer el vector de clientes y buscar el cliente elegido >*/ 
                 for (Cliente* clnt: tienda.clientes) {
                     if (clnt->getNombre() == nombre) {
                         cliente = clnt;
@@ -100,7 +110,7 @@ int main() {
                     cout << "\nIngrese el nombre del producto que desea añadir al carrito: ";
                     cin >> nombreProducto;
 
-                    // loop para recorrer el vector de productos disponibles y buscar el producto por añadir
+                    /*!< loop para recorrer el vector de productos disponibles y añadir nuevos >*/ 
                     for (Producto* prdct: tienda.productosDisponibles) {
                         if (prdct->getNombre() == nombreProducto) {         
                             producto = prdct;
@@ -137,6 +147,6 @@ int main() {
                 break;
         }
 
-    } while (!opcionValida || opcion != 5);  
-
+    } while (!opcionValida || opcion != 5);  /*!< se asegura que el menú termina hasta que se seleccione la opción de salir >*/ 
+ 
 }
