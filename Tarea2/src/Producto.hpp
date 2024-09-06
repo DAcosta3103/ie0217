@@ -18,11 +18,11 @@ class Producto {
         
         Producto(string nombre, double precio) : nombre(nombre), precio(precio) {}
 
-        double getPrecio() {
+        double getPrecio() const {
             return precio;
         }
 
-        string getNombre() {
+        string getNombre() const {
             return nombre;
         }
 };
@@ -36,9 +36,9 @@ class ProductoDigital: public Producto {
     public:
         int id;
 
-        ProductoDigital(string nombre, double precio, int id) : nombre(nombre), precio(precio), id(id) {}
+        ProductoDigital(string nombre, double precio, int id) : Producto(nombre, precio), id(id) {}
 
-        int getID() {
+        int getID() const {
             return id;
         }
 
@@ -52,17 +52,11 @@ class ProductoFisico: public Producto {
     public:
         double peso;
 
-        ProductoFisico (string nombre, double precio, double peso): nombre(nombre), precio(precio), id(id) {}
+        ProductoFisico (string nombre, double precio, double peso): Producto(nombre, precio), id(id) {}
 
-        double getPeso() {
+        double getPeso() const {
             return peso;
         }      
 };
-
-
-
-
-
-
 
 #endif //PRODUCTO_HPP
