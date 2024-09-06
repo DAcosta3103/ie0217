@@ -20,6 +20,8 @@ class Cliente {
            carrito.push_back(producto);
         }
 
+        virtual double aplicarDescuento(double valor) const = 0;      
+
         double calcularTotal() const {
             double total = 0;
             for(Producto* producto : carrito) {                 // el condicional significa "para todo producto, donde producto es un puntero de 'Producto' (la clase), en el rango de 'carrito' (un vector)"
@@ -28,8 +30,17 @@ class Cliente {
             return total;
         }
 
-        virtual void aplicarDescuento(double descuento) const = 0;      
+        void mostrarCarrito() {
+            cout << "Carrito del cliente " << nombre << ":\n";
 
+            if (carrito.empty()){
+                cout << "No hay elementos en el carrito.";
+            } else {
+                for (Producto* producto : carrito) {
+                    cout << producto->getNombre() << endl;
+                }
+            }
+        }
 };
 
 /**
@@ -40,7 +51,7 @@ class ClienteRegular: public Cliente {
     public:
         ClienteRegular(string nombre) : Cliente(nombre) {}
 
-        double aplicarDescuento(double descuento) const override {
+        double aplicarDescuento(double valor) const override {
             return Cliente::calcularTotal();
         }
 };
@@ -55,11 +66,11 @@ class ClientePremium: public Cliente {
 
         ClientePremium(string nombre, double descuento) : Cliente(nombre), descuento(descuento) {}
 
-        double aplicarDescuento(double descuento) const override {
-            descuento *= 0.01;
+        double aplicarDescuento(double valor) const override {
+            descuento = valor * 0.01;
             double total = Cliente::calcularTotal();
             
-            return (total - total * descuento);
+            return (total - total * descuento);     // retorna el valor de la compra con el descuento aplicado
         }
 };
 
