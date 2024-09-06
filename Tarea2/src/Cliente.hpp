@@ -29,7 +29,7 @@ class Cliente {
 
         double calcularTotal() const {
             double total = 0;
-            for(Producto* producto : carrito) {                 // el condicional significa "para todo producto, donde producto es un puntero de 'Producto' (la clase), en el rango de 'carrito' (un vector)"
+            for(Producto* producto: carrito) {                 // el condicional significa "para todo producto, donde producto es un puntero de 'Producto' (la clase), en el rango de 'carrito' (un vector)"
                 total += producto->getPrecio();
             }
             return total;
@@ -71,11 +71,8 @@ class ClientePremium: public Cliente {
 
         ClientePremium(string& nombre, double descuento) : Cliente(nombre), descuento(descuento) {}
 
-        double aplicarDescuento(double valor) const override {
-            valor *= 0.01;
-            double total = Cliente::calcularTotal();
-            
-            return (total - total * valor);     // retorna el valor de la compra con el descuento aplicado
+        double aplicarDescuento(double total) const override {
+            return (total*(1 - descuento));     // retorna el valor de la compra con el descuento aplicado
         }
 };
 
