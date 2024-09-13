@@ -26,23 +26,24 @@ using namespace std;
 
 int main() {
 
-// declare an int pointer 
-int* pointInt;
+    // declare an int pointer 
+    int* pointInt;
 
-// declare a float pointer 
-float* pointFloat;
+    // declare a float pointer 
+    float* pointFloat;
 
-// reserva espacios de la memoria dinámica
-pointInt = new int; 
-pointFloat = new float;
+    // reserva espacios de la memoria dinámica
+    pointInt = new int; 
+    pointFloat = new float;
 
-// assigning value to the memory 
-*pointInt = 45;
-*pointFloat 45.45f;
+    // assigning value to the memory 
+    *pointInt = 45;
+    *pointFloat 45.45f;
 
-cout << *pointInt << endl; 
-cout << *pointFloat << endl;
-// deallocate the memory delete point Int: delete pointFloat:
+    cout << *pointInt << endl; 
+    cout << *pointFloat << endl;
+    // deallocate the memory delete point Int: delete pointFloat:
 
-return 0;
+    return 0;
+    
 }

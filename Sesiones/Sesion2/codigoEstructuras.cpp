@@ -5,7 +5,7 @@ using namespace std;
 
 
 // Cabe destacar que usando estructuras 'struct', podemos ahorrar memoria ya que no hay que declarar 4n variables para n libros, sino que el valor
-// de las variables se declara atomaticamente en los parametros del main
+// de las variables se declara automáticamente en los parámetros del main
 
 /*
 struct Books {
@@ -63,7 +63,7 @@ struct Person
 
 int main()
 {
-    Person p1;          // Declaramos a p1 como un tipo de 'Person'
+    Person p1;          // Declaramos a p1 como una variable de tipo 'Person'
 
 
     // Ahora procedemos a pedirle al usuario la informacion para p1
