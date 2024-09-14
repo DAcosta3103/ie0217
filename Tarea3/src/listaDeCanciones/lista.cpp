@@ -1,5 +1,5 @@
 /**
- * @file listsa.cpp
+ * @file lista.cpp
  * @brief Archivo fuente para la clase ListaEnlazada
  * 
  * MIT License
