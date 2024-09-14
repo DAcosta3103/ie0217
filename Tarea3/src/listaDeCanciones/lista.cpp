@@ -71,7 +71,7 @@ void ListaEnlazada::insertarFinal(Cancion& cancion) {
  */ 
 void ListaEnlazada::insertarPosicion(Cancion& cancion, int posicion) {
     if (posicion <= 0) {
-        insertarAlInicio(cancion);
+        insertarInicio(cancion);
         return;
     }
     
@@ -125,7 +125,7 @@ void ListaEnlazada::modificarCancion(string& nombre, Cancion& nuevaCancion) {
     Nodo* temp = cabeza;
 
     // se busca el nodo
-    while (temp != nullptr && temp->cancion.getNombre() != nombre) {
+    while (temp != nullptr && temp->cancion->getTitulo() != nombre) {
         temp = temp->siguiente;
     }
 
@@ -144,7 +144,7 @@ void ListaEnlazada::modificarCancion(string& nombre, Cancion& nuevaCancion) {
 void ListaEnlazada::imprimirLista() const {
     Nodo* temp = cabeza;
     while (temp != nullptr) {
-        cout << "Título: " << temp->cancion.getNombre() << " - Artista: " 
+        cout << "Título: " << temp->cancion->getTitulo() << " - Artista: " 
                   << temp->cancion.getArtista() << " (Duración de " 
                   << temp->cancion.getDuracion() << " mins)" << endl;
         temp = temp->siguiente;

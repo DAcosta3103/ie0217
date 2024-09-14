@@ -3,6 +3,9 @@
 
 #include "nodoLista.hpp"
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 /**
  * @brief Clase principal que maneja la Lista Enlazada
@@ -49,8 +52,9 @@ class ListaEnlazada {
          * @brief Método para sertar una canción en una posición en específico de la lista
          * 
          * @param cancion Cancion por insertar
+         * @param posicion Posicion de la lista en dónde ingresar la canción
          */
-        void insertarPosicion(Cancion& cancion);
+        void insertarPosicion(Cancion& cancion, int posicion);
 
         /**
          * @brief Método para eliminar una canción

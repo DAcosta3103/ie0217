@@ -14,7 +14,7 @@ class Nodo {
     
     // Función constructora de la estructura Nodo
     // Recibe un valor y le asigna ese valor al atributo 'dato', mientras que el puntero 'siguiente' apunta a NULL
-    Nodo(const Cancion& cancion) : cancion(cancion), siguiente(nullptr) {}
+    Nodo(Cancion& cancion) : cancion(cancion), siguiente(nullptr) {}
 };
 
 #endif
