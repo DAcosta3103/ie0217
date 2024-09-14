@@ -95,7 +95,7 @@ class ArbolBinario  {
          /**
          * @brief Método público para llamar a la función de verificar el balanceo del árbol
          */
-        int estaBalanceado() const;
+        bool estaBalanceado() const;
 
 };
 
