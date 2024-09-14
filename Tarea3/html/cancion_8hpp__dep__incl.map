@@ -1,0 +1,7 @@
+<map id="src/listaDeCanciones/cancion.hpp" name="src/listaDeCanciones/cancion.hpp">
+<area shape="rect" id="node1" title="Headerfile para la clase Cancion." alt="" coords="96,5,255,47"/>
+<area shape="rect" id="node2" href="$nodoLista_8hpp.html" title="Headerfile para la clase Nodo, encargada de manejar la lógica del paso entre nodos." alt="" coords="96,95,255,136"/>
+<area shape="rect" id="node3" href="$lista_8hpp.html" title="Headerfile de la clase ListaEnlazada." alt="" coords="96,184,255,225"/>
+<area shape="rect" id="node4" href="$lista_8cpp.html" title="Archivo fuente para la clase ListaEnlazada." alt="" coords="5,273,164,315"/>
+<area shape="rect" id="node5" href="$listaDeCanciones_2main_8cpp.html" title="Archivo main para el ejercicio de Lista Enlazada de canciones." alt="" coords="188,273,347,315"/>
+</map>

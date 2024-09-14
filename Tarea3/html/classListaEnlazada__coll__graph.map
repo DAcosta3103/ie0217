@@ -1,0 +1,5 @@
+<map id="ListaEnlazada" name="ListaEnlazada">
+<area shape="rect" id="node1" title="Clase principal que maneja la Lista Enlazada." alt="" coords="5,184,117,211"/>
+<area shape="rect" id="node2" href="$classNodo.html" title="Estructura Nodo encargada del funcionamiento de los nodos en la lista enlazada." alt="" coords="33,95,89,121"/>
+<area shape="rect" id="node3" href="$classCancion.html" title="Clase base para las canciones." alt="" coords="24,5,99,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="ArbolBinario" name="ArbolBinario">
+<area shape="rect" id="node1" title="Clase principal para manejar el árbol binario." alt="" coords="5,97,108,124"/>
+<area shape="rect" id="node2" href="$structNodoArbol.html" title="Clase base para un nodo de un árbol." alt="" coords="11,7,102,33"/>
+</map>
