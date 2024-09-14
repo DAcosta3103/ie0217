@@ -1,7 +1,7 @@
 #ifndef ARBOL_HPP
 #define ARBOL_HPP
 
-#include "nodoArbol.hpp"
+#include "nodoArbolBinario.hpp"
 #include <iostream>
 #include <algorithm>
 
@@ -11,7 +11,7 @@ using namespace std;
  * @brief Clase principal para manejar el árbol binario
  * 
  */
-class ArbolBinario  {
+class ArbolBinario {
     private:
         /**
          * @brief El nodo raíz (base) del árbol
@@ -35,7 +35,7 @@ class ArbolBinario  {
          * @return NodoArbol* La dirección del nodo menor
          */
 
-        NodoArbol* getMinimo(NodoArbol* nodo) const;
+        NodoArbol* obtenerMinimo(NodoArbol* nodo) const;
 
         /**
          * @brief Método para eliminar un nodo deseado
@@ -81,6 +81,13 @@ class ArbolBinario  {
          * @param valor El valor del nodo a insertar
          */
         void insertar(int valor);
+
+        /**
+         * @brief Método público para llamar a la función de eliminar nodo
+         * 
+         * @param valor El valor del nodo a eliminar
+         */
+        void eliminar(int valor);
 
         /**
          * @brief Método público para llamar a la función de recorrer el árbol en orden
