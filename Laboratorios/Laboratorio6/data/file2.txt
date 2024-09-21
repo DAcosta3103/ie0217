@@ -1,0 +1,7 @@
+Los números telefónicos son 123-456-7890 y 098-765-4321.
+El código postal es 90210.
+Aquí no hay ningún número.
+Un ID típico: abc-123-def-456.
+Hay una fecha en formato europeo: 25/12/2024.
+Y otra fecha en formato americano: 12-25-2024.
+Los números hexadecimales como 0x1A3B y 0xFFEE son interesantes.

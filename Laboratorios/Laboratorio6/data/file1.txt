@@ -1,0 +1,7 @@
+Esta es la primera línea del archivo.
+El número de orden es 1234.
+Aquí hay otro número: 5678.
+Sin números en esta línea.
+¿Qué tal si escribimos algo más? 2023 es un buen año.
+El archivo contiene números como 98765 y palabras.
+Patrón encontrado: abc123def456.
