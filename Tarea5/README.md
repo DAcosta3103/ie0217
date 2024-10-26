@@ -1,20 +1,6 @@
 # IE0217 Tarea 5
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Esta tarea trata sobre dos scripts: un sistema de reseñas de cursos y profesores usando MySQL y un sistema de publicaciones en redes sociales usando MongoDB.
 
 # Parte Teórica
 
