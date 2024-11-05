@@ -1,6 +1,6 @@
   
   
-  name: CI/CD Pipeline for Calculator
+name: CI/CD Pipeline for Calculator
 
 on:
   push:
