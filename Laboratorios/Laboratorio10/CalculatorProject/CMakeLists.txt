@@ -1,4 +1,3 @@
-
 cmake_minimum_required(VERSION 3.10)
 project(CalculatorProject)
 
@@ -17,5 +16,3 @@ include_directories(googletest/googletest/include)
 # Agregar GoogleTest y configurar las pruebas
 enable_testing()
 add_subdirectory(tests)
-
-#endif // CALCULATOR_HPP
