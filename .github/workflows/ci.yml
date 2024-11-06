@@ -44,8 +44,8 @@ jobs:
       # Paso 5: Crear directorio de compilación y compilar el proyecto
       - name: Build project
         run: |
-          mkdir -p CalculatorProject/build
-          cd CalculatorProject/build
+          mkdir -p /home/diego/ie0217/finalRepo/ie0217/Laboratorios/Laboratorio10/CalculatorProject/build
+          cd /home/diego/ie0217/finalRepo/ie0217/Laboratorios/Laboratorio10/CalculatorProject/build
           cmake ..
           make
       # Paso 6: Ejecutar las pruebas
