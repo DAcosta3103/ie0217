@@ -22,7 +22,7 @@ jobs:
       # Paso 2: Clonar GoogleTest dentro de CalculatorProject
       - name: Clone GoogleTest
         run: |
-          git clone https://github.com/google/googletest.git CalculatorProject/googletest
+          git clone https://github.com/google/googletest.git Laboratorios/Laboratorio10/CalculatorProject/googletest
       # Paso 3: Instalar CMake
       - name: Set up CMake
         uses: lukka/get-cmake@v3.21.2
