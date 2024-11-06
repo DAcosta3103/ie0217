@@ -1,21 +1,10 @@
+# tests/CMakeLists.txt
 
-cmake_minimum_required(VERSION 3.10)
-project(CalculatorProject)
+# Agregar el ejecutable de pruebas
+add_executable(run_tests test_calculator.cpp)
 
-# Agregar los archivos fuente del proyecto
-set(SOURCES src/Calculator.cpp)
+# Enlazar GoogleTest y la biblioteca de la calculadora
+target_link_libraries(run_tests gtest gtest_main calculator_lib)
 
-# Crear el ejecutable para el proyecto principal
-add_library(calculator_lib ${SOURCES})
-
-# Incluir GoogleTest como subdirectorio
-add_subdirectory(googletest)  # Esto debería apuntar a la carpeta de GoogleTest que clonamos
-
-# Incluir directorios de GoogleTest
-include_directories(googletest/googletest/include)
-
-# Agregar GoogleTest y configurar las pruebas
-enable_testing()
-add_subdirectory(tests)
-
-#endif // CALCULATOR_HPP
+# Agregar prueba a CMake
+add_test(NAME CalculatorTests COMMAND run_tests)
