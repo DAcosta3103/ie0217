@@ -86,12 +86,361 @@ Otros Aspectos de Sincronización y Rendimiento
 
 ## Análisis del Ejercicio de Depuración
 
+### Resumen General del Programa
 
+Este programa implementa una clase *DataProcessor* que gestiona un arreglo de enteros y permite realizar varias operaciones sobre él, las cuales están asignadas a las siguientes funciones:
 
+- Inicializar valores en el arreglo (*populateData()*).
+- Calcular la suma y el promedio de los elementos (*calculateSum()* y *calculateAverage()*).
+- Procesar los datos concurrentemente en dos hilos que modifican el arreglo (*concurrentProcess()* y *processData()*).
 
+## Tipos de Errores Encontrados
+Al compilar y correr el código, se nota que no hay problema hasta que se ingresa un tamaño *size = 6*, el cual genera el siguiente error:
 
+![Error original](imagenes/ProblemaOriginalDepuracion.png)
+
+Durante el proceso de depuración, se identificaron los siguientes tipos de errores:
+
+- **Errores de Acceso a Memoria:** Acceso fuera de los límites del arreglo debido a un bucle incorrecto en populateData().
+- **Condiciones de Carrera:** Acceso concurrente al arreglo data en processData() sin protección de sincronización.
+- **División por Cero:** Intento de división por cero en *calculateAverage()* cuando *size* es 0.
+- **Posible Fuga de Memoria:** Se mejoró la gestión de memoria en main usando *std::unique_ptr* para evitar posibles problemas de liberación manual de memoria.
+
+## Procedimiento de depuración
+
+### Usando GDB
+
+Con la herramienta GDB se busca identificar problemas de acceso a memoria y errores de lógica. Los comandos utilizados para revisar el código fueorn los siguientes:
+
+```bash
+# Compilar con información de depuración
+g++ -g -o DataProcessor DataProcessor.cpp
+
+# Iniciar GDB con el ejecutable
+gdb ./DataProcessor
+
+# Colocar breakpoints en funciones clave
+(gdb) break main
+(gdb) break DataProcessor::populateData
+(gdb) break DataProcessor::processData
+(gdb) break DataProcessor::calculateSum
+(gdb) break DataProcessor::calculateAverage
+
+# Ejecutar el programa en GDB
+(gdb) run
+
+# Inspeccionar variables
+(gdb) print size
+(gdb) print *data@size
+
+# Ver flujo de llamadas si hay un error
+(gdb) backtrace
+
+# Salir de GDB
+(gdb) q
+```
+
+Algunos de los resultados encontrados gracias a esta herramienta son los siguientes:
+
+![GDB](imagenes/Tarea6GDBErrorFor.png)
+
+Gracias a esto se nota el error de que hay un error en la condición del ciclo for: el iterador *i* se sale del rango *size*, ya que se itera hasta que sea igual a size, sin embargo, la iteración correcta es hasta *size-1*, ya que el iterador toma en cuenta la i=0. Esto genera problemas porque en partes posteriores del código se intenta accesar a esa posición *i=size*, sin embargo, no existe.
+
+### Usando Valgrind
+
+Al utilizar esta herramienta, se espera verificar que no haya fugas de memoria o accesos indebidos. Se ejecuta el siguiente código para detectar fugas y accesos fuera de límites.
+
+```bash
+valgrind --leak-check=full --show-leak-kinds=all ./DataProcessor
+```
+
+Se obtiene lo siguiente:
+
+![Valgrind](imagenes/ValgrindMemoryLeaks.png)
+
+Se nota que no hay fugas por pila, sin emabargo, hay un problema con el write de size. Se procede a ejecutar el análisis de la herramienta **Helgrind** para obtener más detalles del error:
+
+```bash
+valgrind --tool=helgrind ./DataProcessor
+```
+![Helgrind](imagenes/Tarea6ErrorHelgrind.png)
+
+De nuevo se nota el problema en el bucle for, con el problema de que *i=size*.
+
+### Usando Sanitizers de GCC
+
+Se utilizan los siguientes sanitizers del compilador GCC para detectar problemas específicos en el uso de memoria, concurrencia y comportamientos indefinidos.
+
+```bash
+# Compilar con AddressSanitizer
+g++ -g -o DataProcessor_ASan DataProcessor.cpp -fsanitize=address
+./DataProcessor_ASan
+
+# Compilar con ThreadSanitizer
+g++ -g -o DataProcessor_TSan DataProcessor.cpp -fsanitize=thread
+./DataProcessor_TSan
+
+# Compilar con UndefinedBehaviorSanitizer
+g++ -g -o DataProcessor_UBSan DataProcessor.cpp -fsanitize=undefined
+./DataProcessor_UBSan
+```
+
+*Address Sanitizer:*
+
+![Address](imagenes/Tarea6AddrSanit.png)
+
+*Thread Sanitizer:*
+
+![Helgrind](imagenes/Tarea6ThreadSanit.png)
+
+*Undefined Behavior Sanitizer:*
+
+![Helgrind](imagenes/Tarea6UBSanit.png)
+
+## Corrección de errores
+
+Acceso Fuera de los Límites en populateData()
+
+Descripción: El bucle for en populateData() intentaba acceder a data[size], fuera de los límites válidos.
+Corrección:
+```cpp
+void populateData() {
+    for (int i = 0; i < size; ++i) {  // Cambiado de i <= size a i < size
+        data[i] = i * 10;
+    }
+}
+```
+Justificación: Cambiar la condición a i < size evita accesos fuera del rango del arreglo data.
+Condiciones de Carrera en processData()
+
+Descripción: La función processData() accedía al arreglo data sin sincronización, provocando condiciones de carrera.
+Corrección:
+```cpp
+void processData() {
+    for (int i = 0; i < size; ++i) {
+        std::lock_guard<std::mutex> lock(mtx);  // Se agregó un mutex para proteger el acceso a data
+        data[i] *= 2;
+    }
+}
+```
+Justificación: El uso de std::lock_guard asegura que solo un hilo pueda modificar data a la vez.
+División por Cero en calculateAverage()
+
+Descripción: Si size era 0, calculateAverage() intentaba dividir por cero, causando un comportamiento indefinido.
+
+Corrección:
+```cpp
+double calculateAverage() {
+    if (size == 0) return 0.0;  // Se evita la división entre cero
+    return static_cast<double>(calculateSum()) / size;
+}
+```
+Justificación: La verificación if (size == 0) asegura que no se intente una división por cero.
+Mejora en la Gestión de Memoria en main
+
+Descripción: Se usó new y delete manualmente en main, lo cual es propenso a errores si delete se omite.
+Corrección:
+```cpp
+int main() {
+    int size;
+    std::cout << "Enter size of data: ";
+    std::cin >> size;
+
+    auto processor = std::make_unique<DataProcessor>(size);  // Usa std::unique_ptr
+    processor->populateData();
+    processor->concurrentProcess();
+    std::cout << "Average: " << processor->calculateAverage() << std::endl;
+
+    return 0;
+}
+```
+
+Justificación: std::unique_ptr gestiona automáticamente la liberación de memoria al salir del alcance.
 
 ## Parte Teórica
 
+## 1.Diferencia entre un proceso y un hilo en programación
 
+- Diferencias en el uso de memoria:
+Los procesos tienen un espacio de memoria independiente, mientras que los hilos dentro de un mismo proceso comparten el espacio de memoria del proceso padre. Esto permite que los hilos sean más eficientes en términos de memoria.
+- Tres características importantes de los procesos:
+Ejecutan tareas en memoria independiente.
+Necesitan comunicación inter-procesos (IPC) para intercambiar datos.
+La creación de procesos es más costosa en términos de recursos.
+- Tres características importantes de los hilos:
+Comparten el mismo espacio de memoria y recursos del proceso.
+La comunicación entre hilos es más rápida y directa.
+Son más livianos y su creación es menos costosa que la de un proceso.
+Multitarea y su implementación
 
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+
+## 2.¿Qué es la multitarea?
+La multitarea es la capacidad del sistema para ejecutar múltiples tareas en un período de tiempo, dando la impresión de ejecución simultánea.
+¿Se realiza de manera paralela o concurrente?
+Puede realizarse de ambas formas, dependiendo del hardware. En un sistema de un solo núcleo, es concurrente; en uno de múltiples núcleos, puede ser paralela.
+a. Ejemplo de uso de multitarea:
+Un sistema operativo que permite al usuario trabajar en un procesador de texto mientras escucha música.
+b. Mecanismos de comunicación en multitarea:
+Semáforos, colas de mensajes y variables de condición son mecanismos comunes para gestionar la comunicación en multitarea.
+
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+## 3.Generación de procesos paralelos en una computadora
+
+a. División de tareas en paralelo:
+Las tareas se dividen en sub-tareas que se asignan a distintos núcleos o hilos. Las sub-tareas deben ser lo más independientes posible para minimizar la sincronización y maximizar el paralelismo.
+b. Factores que afectan la eficiencia de procesos paralelos:
+La cantidad de núcleos, la necesidad de sincronización, el balance de carga y el acceso a memoria son factores determinantes para la eficiencia en paralelismo.
+
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+## 4.Funcionamiento de tareas concurrentes
+
+a. Mecanismos de sincronización en tareas concurrentes:
+Los mutex, semáforos y variables de condición son mecanismos que permiten coordinar el acceso concurrente a recursos compartidos.
+b. Desafíos comunes de la programación concurrente:
+Deadlocks, condiciones de carrera y la gestión de recursos compartidos son problemas habituales en concurrencia.
+
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+## 5.Diferencias entre multinúcleo y multiprocesador:
+
+Un sistema multinúcleo posee múltiples núcleos en un solo chip, mientras que un multiprocesador incluye varios chips de CPU en el sistema, cada uno con uno o más núcleos.
+
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+
+## 6.Diferencias entre memoria compartida y distribuida:
+
+La memoria compartida permite que múltiples procesos accedan a la misma ubicación de memoria, mientras que la memoria distribuida implica que cada nodo en un sistema tiene su propio espacio de memoria, requiriendo comunicación explícita.
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+
+## 7.Condición de carrera:
+
+Es una situación en la que el resultado del programa depende del orden en que los hilos acceden a los datos compartidos, lo que puede generar comportamientos impredecibles.
+![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+
+## 8.Mecanismos para evitar condiciones de carrera en memoria compartida
+
+- Mutex: Restringe el acceso simultáneo a la sección crítica a un solo hilo.
+- Semáforos: Controlan el acceso a recursos con varios hilos, limitando el número de hilos que pueden acceder.
+- Variables de condición: Coordinan la ejecución de hilos, permitiendo que uno espere hasta que una condición específica sea verdadera.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+## 9.Modelos de memoria compartida vs. paso de mensajes
+
+En memoria compartida, los hilos comparten el espacio de memoria. En paso de mensajes, los hilos o procesos se comunican enviando datos explícitamente.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+
+## 10.Mecanismos de sincronización en C++
+
+Mutex: std::mutex para evitar acceso simultáneo a datos compartidos.
+Lock Guard: std::lock_guard para la administración de bloqueo automático.
+Variable de Condición: std::condition_variable para coordinar la sincronización.
+Semáforo Contado: std::counting_semaphore para gestionar múltiples accesos.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+
+## 11.Costos de administración y creación de hilos
+
+a. Recursos del sistema: Procesador, memoria, tiempo de CPU y mecanismos de sincronización.
+b. Estrategias de optimización: Uso de pool de hilos, minimizar la creación y destrucción de hilos, y gestionar la afinidad de los hilos.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+
+## 1222.Ventajas de usar herramientas de depuración
+
+Identificar errores rápidamente, comprender el flujo del programa y optimizar el uso de recursos.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+
+## 13.Breakpoint en un entorno de depuración
+
+Punto de interrupción que permite detener la ejecución en un lugar específico para examinar el estado del programa.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+
+## 14.Stepping en depuración
+
+Tipos de stepping:
+- Step Over: Ejecuta la función actual sin entrar en sus detalles.
+- Step Into: Entra en la función actual para depurar su ejecución.
+- Step Out: Sale de la función actual, retomando la ejecución en el nivel superior.
+
+![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+
+## 15.Cinco comandos de GDB
+
+- break: Establece un punto de interrupción.
+- run: Inicia el programa.
+- next: Avanza una línea.
+- print: Imprime el valor de una variable.
+- continue: Continúa la ejecución hasta el próximo breakpoint.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 16.Valgrind y su conveniencia
+
+Valgrind es una herramienta que permite detectar errores de memoria. Memcheck es una herramienta específica de Valgrind para identificar accesos indebidos a memoria.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 17.Uso de AddressSanitizer y ThreadSanitizer
+
+- AddressSanitizer: Detecta accesos fuera de los límites de memoria.
+- ThreadSanitizer: Detecta errores en la concurrencia.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 18.Paralelismo a nivel de datos vs. a nivel de tareas
+
+- Datos: Divide datos en bloques independientes. Ejemplo: procesamiento de imágenes en bloques.
+- Tareas: Divide funciones. Ejemplo: un hilo para entrada de datos y otro para procesamiento.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 19.Balanceo de carga en sistemas paralelos
+
+Distribuir las tareas equitativamente entre los núcleos. Un mal balanceo lleva a una menor eficiencia.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 20.Orden de ejecución de los hilos en concurrencia
+
+Problemas como condiciones de carrera y deadlocks surgen sin un orden adecuado, lo que puede generar errores de sincronización.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 21.Barreras en programación paralela
+
+Una barrera sincroniza hilos en puntos específicos. Ejemplo: sincronización al finalizar el cálculo de una iteración.
+
+![Referencia](https://oregoom.com/java/multitarea-hilos/)
+
+## 22.Identificación de fugas de memoria
+
+Herramientas como Valgrind permiten detectar estos problemas.
+
+![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+
+## 23.Uso de semáforos y su impacto
+
+Los semáforos regulan el acceso a recursos compartidos. Un semáforo binario limita a un hilo, mientras que uno contado permite un número definido de accesos.
+
+![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+
+## 24.Herramienta para detectar accesos indebidos a memoria
+
+AddressSanitizer detecta accesos inválidos como desbordamientos de búfer o memoria no inicializada.
+
+![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+
+## 25.Detección de uso de memoria liberada
+
+Valgrind permite identificar errores de uso de memoria después de ser liberada.
+
+![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+
+## 26.Detección de comportamientos inesperados en programas multihilo
+
+ThreadSanitizer y Valgrind (con Helgrind) son herramientas útiles para analizar bloqueos o deadlocks.
+
+![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
