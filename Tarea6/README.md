@@ -279,7 +279,7 @@ La comunicación entre hilos es más rápida y directa.
 Son más livianos y su creación es menos costosa que la de un proceso.
 Multitarea y su implementación
 
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 
 ## 2.¿Qué es la multitarea?
 La multitarea es la capacidad del sistema para ejecutar múltiples tareas en un período de tiempo, dando la impresión de ejecución simultánea.
@@ -290,7 +290,7 @@ Un sistema operativo que permite al usuario trabajar en un procesador de texto m
 b. Mecanismos de comunicación en multitarea:
 Semáforos, colas de mensajes y variables de condición son mecanismos comunes para gestionar la comunicación en multitarea.
 
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 ## 3.Generación de procesos paralelos en una computadora
 
 a. División de tareas en paralelo:
@@ -298,7 +298,7 @@ Las tareas se dividen en sub-tareas que se asignan a distintos núcleos o hilos.
 b. Factores que afectan la eficiencia de procesos paralelos:
 La cantidad de núcleos, la necesidad de sincronización, el balance de carga y el acceso a memoria son factores determinantes para la eficiencia en paralelismo.
 
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 ## 4.Funcionamiento de tareas concurrentes
 
 a. Mecanismos de sincronización en tareas concurrentes:
@@ -306,22 +306,22 @@ Los mutex, semáforos y variables de condición son mecanismos que permiten coor
 b. Desafíos comunes de la programación concurrente:
 Deadlocks, condiciones de carrera y la gestión de recursos compartidos son problemas habituales en concurrencia.
 
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 ## 5.Diferencias entre multinúcleo y multiprocesador:
 
 Un sistema multinúcleo posee múltiples núcleos en un solo chip, mientras que un multiprocesador incluye varios chips de CPU en el sistema, cada uno con uno o más núcleos.
 
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 
 ## 6.Diferencias entre memoria compartida y distribuida:
 
 La memoria compartida permite que múltiples procesos accedan a la misma ubicación de memoria, mientras que la memoria distribuida implica que cada nodo en un sistema tiene su propio espacio de memoria, requiriendo comunicación explícita.
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 
 ## 7.Condición de carrera:
 
 Es una situación en la que el resultado del programa depende del orden en que los hilos acceden a los datos compartidos, lo que puede generar comportamientos impredecibles.
-![Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
+[Referencia](https://www.guru99.com/es/difference-between-process-and-thread.html)
 
 ## 8.Mecanismos para evitar condiciones de carrera en memoria compartida
 
@@ -334,7 +334,7 @@ Es una situación en la que el resultado del programa depende del orden en que l
 
 En memoria compartida, los hilos comparten el espacio de memoria. En paso de mensajes, los hilos o procesos se comunican enviando datos explícitamente.
 
-![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+[Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
 
 ## 10.Mecanismos de sincronización en C++
 
@@ -343,26 +343,26 @@ Lock Guard: std::lock_guard para la administración de bloqueo automático.
 Variable de Condición: std::condition_variable para coordinar la sincronización.
 Semáforo Contado: std::counting_semaphore para gestionar múltiples accesos.
 
-![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+[Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
 
 ## 11.Costos de administración y creación de hilos
 
 a. Recursos del sistema: Procesador, memoria, tiempo de CPU y mecanismos de sincronización.
 b. Estrategias de optimización: Uso de pool de hilos, minimizar la creación y destrucción de hilos, y gestionar la afinidad de los hilos.
 
-![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+[Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
 
 ## 1222.Ventajas de usar herramientas de depuración
 
 Identificar errores rápidamente, comprender el flujo del programa y optimizar el uso de recursos.
 
-![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+[Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
 
 ## 13.Breakpoint en un entorno de depuración
 
 Punto de interrupción que permite detener la ejecución en un lugar específico para examinar el estado del programa.
 
-![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+[Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
 
 ## 14.Stepping en depuración
 
@@ -371,7 +371,7 @@ Tipos de stepping:
 - Step Into: Entra en la función actual para depurar su ejecución.
 - Step Out: Sale de la función actual, retomando la ejecución en el nivel superior.
 
-![Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
+[Referencia](https://www.pragma.com.co/academia/lecciones/programacion-concurrente-parte-1)
 
 ## 15.Cinco comandos de GDB
 
@@ -381,72 +381,72 @@ Tipos de stepping:
 - print: Imprime el valor de una variable.
 - continue: Continúa la ejecución hasta el próximo breakpoint.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 16.Valgrind y su conveniencia
 
 Valgrind es una herramienta que permite detectar errores de memoria. Memcheck es una herramienta específica de Valgrind para identificar accesos indebidos a memoria.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 17.Uso de AddressSanitizer y ThreadSanitizer
 
 - AddressSanitizer: Detecta accesos fuera de los límites de memoria.
 - ThreadSanitizer: Detecta errores en la concurrencia.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 18.Paralelismo a nivel de datos vs. a nivel de tareas
 
 - Datos: Divide datos en bloques independientes. Ejemplo: procesamiento de imágenes en bloques.
 - Tareas: Divide funciones. Ejemplo: un hilo para entrada de datos y otro para procesamiento.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 19.Balanceo de carga en sistemas paralelos
 
 Distribuir las tareas equitativamente entre los núcleos. Un mal balanceo lleva a una menor eficiencia.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 20.Orden de ejecución de los hilos en concurrencia
 
 Problemas como condiciones de carrera y deadlocks surgen sin un orden adecuado, lo que puede generar errores de sincronización.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 21.Barreras en programación paralela
 
 Una barrera sincroniza hilos en puntos específicos. Ejemplo: sincronización al finalizar el cálculo de una iteración.
 
-![Referencia](https://oregoom.com/java/multitarea-hilos/)
+[Referencia](https://oregoom.com/java/multitarea-hilos/)
 
 ## 22.Identificación de fugas de memoria
 
 Herramientas como Valgrind permiten detectar estos problemas.
 
-![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+[Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
 
 ## 23.Uso de semáforos y su impacto
 
 Los semáforos regulan el acceso a recursos compartidos. Un semáforo binario limita a un hilo, mientras que uno contado permite un número definido de accesos.
 
-![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+[Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
 
 ## 24.Herramienta para detectar accesos indebidos a memoria
 
 AddressSanitizer detecta accesos inválidos como desbordamientos de búfer o memoria no inicializada.
 
-![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+[Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
 
 ## 25.Detección de uso de memoria liberada
 
 Valgrind permite identificar errores de uso de memoria después de ser liberada.
 
-![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+[Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
 
 ## 26.Detección de comportamientos inesperados en programas multihilo
 
 ThreadSanitizer y Valgrind (con Helgrind) son herramientas útiles para analizar bloqueos o deadlocks.
 
-![Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
+[Referencia](https://www.luisllamas.es/asincronia-concurrencia-paralelismo/)
