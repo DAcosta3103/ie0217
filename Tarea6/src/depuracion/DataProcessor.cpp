@@ -20,7 +20,7 @@ public:
     }
 
     void populateData() {
-        for (int i = 0; i <= size; ++i) {
+        for (int i = 0; i < size; ++i) {        // se cambia el límite del for para que no ocurran problemas en memoria
             data[i] = i * 10;
         }
     }
@@ -34,6 +34,7 @@ public:
     }
 
     double calculateAverage() {
+        if (size == 0) return 0.0;      // evita la división entre cero
         return static_cast<double>(calculateSum()) / size; 
     }
 
@@ -58,6 +59,7 @@ private:
 
     void processData() {
         for (int i = 0; i < size; ++i) {
+            std::lock_guard<std::mutex> lock(mtx);      // se añade un mutex para evitar condiciones de carrera
             data[i] *= 2;
         }
     }
