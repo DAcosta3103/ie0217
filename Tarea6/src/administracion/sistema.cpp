@@ -149,7 +149,7 @@ double calcular_uso_cpu() {
 
 void mostrar_metricas() {
 
-    int iteraciones = 5;
+    int iteraciones = 3;
     for (int i = 0; i < iteraciones; ++i) {
     
         this_thread::sleep_for(chrono::seconds(10));      // mostrar cada 5 segundos

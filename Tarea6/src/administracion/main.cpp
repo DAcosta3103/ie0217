@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-    int num_clientes = 10;
-    int num_operadores = 10;
+    int num_clientes = 1000;
+    int num_operadores = 1000;
     vector<thread> clientes, operadores;      // se crean vectores de hilos para manejar los clientes y operadores
 
     for (int i = 0; i < num_clientes; ++i)
