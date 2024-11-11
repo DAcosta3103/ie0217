@@ -1,14 +1,20 @@
 # Tarea 6 IE-0*17: Sistema de Administración en Paralelo y Depuración de Código
 
-Para esta tarea se realizan dos ejercicios: la programación de un script en C++ de un sistema de administración de solicitudes en paralelo
+Para esta tarea se realizan dos ejercicios: la programación de un script en C++ de un sistema de administración de solicitudes en paralelo y la depuración de un código de C++ utilizando las herramientas GDB, Valgrind y los sanitizers de GCC.
 
 
 ## Insrucciones para correr el código
 
-Considerando que se tiene instalado un compilador GCC para C++, lo primero es **situarse en la carpeta raíz _Tarea6_**. Ambos códigos se ejecutarán en orden, primero mostrando el menú para el manejo del árbol binario, y una vez se elige la opción de salir de ese programa se entra al programa de la lista enlazada de cancioness. Gracias al Makefile, solo es necesario un comando en línea para compilar y correr todo:
+Considerando que se tiene instalado un compilador GCC para C++, lo primero es **situarse en la carpeta raíz _Tarea6_**. Ambos códigos se ejecutarán en orden, primero mostrando el menú para el manejo del árbol binario, y una vez se elige la opción de salir de ese programa se entra al programa de la lista enlazada de cancioness. Gracias al Makefile, solo es necesario un comando en línea para compilar cualquiera de los dos archivos:
 
+Para correr el sistema de administración con programación en paralelo se ejecuta el siguiente comando
+```bash
+make sistema
 ```
-make
+
+Para correr el archivo depurado "DataProcessor.cpp" se ejecuta el siguiente comando
+```bash
+make dataP
 ```
 
 ## Análisis del Sistema de Administración de Solicitudes en Paralelo 
