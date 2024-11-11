@@ -34,7 +34,7 @@ public:
     }
 
     double calculateAverage() {
-        if (size == 0) return 0.0;      // evita la división entre cero
+        if (size == 0) return 0.0;      // se evita la división entre cero
         return static_cast<double>(calculateSum()) / size; 
     }
 
@@ -70,12 +70,12 @@ int main() {
     std::cout << "Enter size of data: ";
     std::cin >> size;
 
-    DataProcessor* processor = new DataProcessor(size);
+    auto processor = std::make_unique<DataProcessor>(size);  // usa std::unique_ptr
 
     processor->populateData();
     processor->concurrentProcess();
     std::cout << "Average: " << processor->calculateAverage() << std::endl;
 
-    delete processor;
+    
     return 0;
 }
