@@ -6,6 +6,9 @@
 #include <semaphore>
 #include <chrono>
 #include <random>
+#include <fstream>
+#include <string>
+#include <unistd.h> // Para usar usleep()
 #include "sistema.hpp"
 
 using namespace std;
@@ -36,7 +39,7 @@ void cliente(int id) {
         {
             unique_lock<mutex> lock(mtx);  // se protege con mutex para que solo haya un cliente(hilo) a la vez
             buffer.push({solicitud, chrono::steady_clock::now()}); // se añade el steady clock now para guardar el tiempo actual
-            cout << "Cliente " << id << " ha añadido solicitud " << solicitud << "\n";
+            //cout << "Cliente " << id << " ha añadido solicitud " << solicitud << "\n";
         }
 
         full_slots.release();       // notifica que hay una solicitud disponible
@@ -64,7 +67,7 @@ void operador(int id) {
             solicitud = item.first;         // se extrae la solicitud    
             inicio = item.second;           // se extrae el tiempo de inicio de la creación
             buffer.pop();                   // se extrae la solicitud mas antigua del buffer
-            cout << "Operador " << id << " está procesando solicitud " << solicitud << "\n";
+            //cout << "Operador " << id << " está procesando solicitud " << solicitud << "\n";
         }
         // Calcula el tiempo de espera de la solicitud en el buffer
         fin = chrono::steady_clock::now();  // se extrae el tiempo donde se finalizó el proceso
@@ -98,9 +101,55 @@ void operador(int id) {
     }
 }
 
+
+
+double calcular_uso_cpu() {
+    std::ifstream stat_file("/proc/stat");
+    std::string line;
+    long user, nice, system, idle, iowait, irq, softirq, steal;
+    long prev_total = 0, prev_idle = 0;
+
+    if (stat_file.is_open()) {
+        // Leer la primera línea de /proc/stat
+        std::getline(stat_file, line);
+        sscanf(line.c_str(), "cpu %ld %ld %ld %ld %ld %ld %ld %ld",
+               &user, &nice, &system, &idle, &iowait, &irq, &softirq, &steal);
+        
+        prev_idle = idle + iowait;
+        prev_total = user + nice + system + idle + iowait + irq + softirq + steal;
+        stat_file.close();
+    }
+
+    // Esperar 100 milisegundos antes de la segunda lectura
+    usleep(100000);
+
+    // Segunda lectura del archivo
+    stat_file.open("/proc/stat");
+    long user2, nice2, system2, idle2, iowait2, irq2, softirq2, steal2;
+    long total = 0, idle_total = 0;
+
+    if (stat_file.is_open()) {
+        std::getline(stat_file, line);
+        sscanf(line.c_str(), "cpu %ld %ld %ld %ld %ld %ld %ld %ld",
+               &user2, &nice2, &system2, &idle2, &iowait2, &irq2, &softirq2, &steal2);
+
+        idle_total = idle2 + iowait2;
+        total = user2 + nice2 + system2 + idle2 + iowait2 + irq2 + softirq2 + steal2;
+        stat_file.close();
+    }
+
+    // Cálculo de diferencia entre las dos lecturas
+    double total_dif = total - prev_total;
+    double idle_dif = idle_total - prev_idle;
+
+    // Calcular el porcentaje de uso de CPU
+    double cpu_usage = (total_dif - idle_dif) / total_dif * 100.0;
+    return cpu_usage;
+}
+
 void mostrar_metricas() {
 
-    int iteraciones = 3;
+    int iteraciones = 5;
     for (int i = 0; i < iteraciones; ++i) {
     
         this_thread::sleep_for(chrono::seconds(10));      // mostrar cada 5 segundos
@@ -128,10 +177,14 @@ void mostrar_metricas() {
         promedio_espera = num_esperas > 0 ? total_espera / num_esperas : 0;
         promedio_procesamiento = num_procesamientos > 0 ? total_procesamiento / num_procesamientos : 0;
 
+        // se llama a la función de uso de CPU
+        double cpu_usage = calcular_uso_cpu();
+
         // Imprimir resultados
         cout << "\n--- MÉTRICAS DE RENDIMIENTO ---\n";
         cout << "Promedio de tiempo de espera en búfer: " << promedio_espera << " segundos\n";
         cout << "Promedio de tiempo de procesamiento: " << promedio_procesamiento << " segundos\n";
+        cout << "Uso de CPU: " << cpu_usage << "%\n";
         cout << "--------------------------------\n";
     }
     sistema_activo = false;
