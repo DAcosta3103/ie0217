@@ -1,4 +1,4 @@
-# Tarea 6 IE-0*17: Sistema de Administración en Paralelo y Depuración de Código
+# Tarea 6 IE-017: Sistema de Administración en Paralelo y Depuración de Código
 
 Para esta tarea se realizan dos ejercicios: la programación de un script en C++ de un sistema de administración de solicitudes en paralelo y la depuración de un código de C++ utilizando las herramientas GDB, Valgrind y los sanitizers de GCC.
 
