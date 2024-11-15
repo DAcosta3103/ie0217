@@ -21,10 +21,10 @@ class Inventario {
     private:
         vector<Componente> componentes;
     public:
-        agregarComponente(const string& nombre, const string& categoria, int cantidad, const string& descripcion);
-        reducirComponente(const string& nombre, int cantidad);
-        listarComponentes() const;
-        buscarComponente(const string& nombre);
+        void agregarComponente(const string& nombre, const string& categoria, int cantidad, const string& descripcion);
+        void reducirComponente(const string& nombre, int cantidad);
+        void listarComponentes() const;
+        void buscarComponente(const string& nombre);
 
 };
 

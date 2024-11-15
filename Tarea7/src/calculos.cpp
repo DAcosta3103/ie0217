@@ -69,4 +69,3 @@ double Calculos::inductanciaParalelo(const vector<double>& inductancias) {
     }
     return 1.0/suma;
 } 
-

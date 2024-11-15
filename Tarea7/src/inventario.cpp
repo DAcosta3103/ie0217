@@ -3,6 +3,12 @@
 
 using namespace std;
 
+Componente::Componente(const std::string& nombre, const std::string& categoria, int cantidad, const std::string& descripcion) : nombre(nombre), categoria(categoria), cantidad(cantidad), descripcion(descripcion) {
+    if (cantidad <= 0) {
+        throw std::invalid_argument("Cantidad debe ser mayor que 0");
+    }
+}
+
 // Se maneja la inclusión de un componente nuevo en el vector 'componentes', de la clase Inventario
 void Inventario::agregarComponente(const string& nombre, const string& categoria, int cantidad, const string& descripcion) {
     // entra al bucle para buscar el componente, en caso de que sea repetido
