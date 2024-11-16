@@ -41,7 +41,7 @@ jobs:
           cd Tarea7/googletest/build
           cmake ..
           make
-          sudo cp lib/*.a /usr/local/lib  # Copiar bibliotecas de GoogleTest
+          sudo cp lib/*.a /usr/local/lib
 
       # Paso 6: Crear directorio de compilación y compilar el proyecto
       - name: Build project
@@ -99,4 +99,5 @@ jobs:
 
       # Paso 4: Simular despliegue exitoso
       - name: Simulate deployment
-        run: echo "Despliegue exitoso: los binarios están listos para ser distribuidos."
+        run: |
+          echo "Despliegue exitoso: los binarios están listos para ser distribuidos."
