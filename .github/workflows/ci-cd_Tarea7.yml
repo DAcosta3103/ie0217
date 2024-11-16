@@ -28,7 +28,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake lcov
 
-      # Paso 4: Compilar GoogleTest
+      # Paso 4: Limpiar el directorio build
+      - name: Clean build directory
+        run: |
+          rm -rf Tarea7/build
+          mkdir -p Tarea7/build
+
+      # Paso 5: Compilar GoogleTest
       - name: Build GoogleTest
         run: |
           mkdir -p Tarea7/googletest/build
@@ -37,15 +43,14 @@ jobs:
           make
           sudo cp lib/*.a /usr/local/lib  # Copiar bibliotecas de GoogleTest
 
-      # Paso 5: Crear directorio de compilación y compilar el proyecto
+      # Paso 6: Crear directorio de compilación y compilar el proyecto
       - name: Build project
         run: |
-          mkdir -p Tarea7/build
           cd Tarea7/build
           cmake ..
           make
 
-      # Paso 6: Ejecutar las pruebas
+      # Paso 7: Ejecutar las pruebas
       - name: Run tests
         run: |
           cd Tarea7/build
@@ -54,7 +59,7 @@ jobs:
           ./FunctionalTest
           ./testCapacitancia
 
-      # Paso 7: Generar reporte de cobertura
+      # Paso 8: Generar reporte de cobertura
       - name: Generate coverage report
         run: |
           cd Tarea7/build
@@ -62,32 +67,9 @@ jobs:
           lcov --remove coverage.info '/usr/*' '*/tests/*' --output-file coverage.filtered.info
           genhtml coverage.filtered.info --output-directory coverage-report
 
-      # Paso 8: Subir el reporte de cobertura como artefacto
+      # Paso 9: Subir el reporte de cobertura como artefacto
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
           name: coverage-report
           path: Tarea7/build/coverage-report
-
-  package-and-deploy:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    steps:
-      # Paso 1: Clonar el repositorio
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Paso 2: Crear artefactos de los binarios
-      - name: Create distribution artifacts
-        run: |
-          cd Tarea7/build
-          tar -czf Tarea7-binaries.tar.gz testInventario testCalculos FunctionalTest testCapacitancia
-          mv Tarea7-binaries.tar.gz ../Tarea7-binaries.tar.gz
-
-      # Paso 3: Subir binarios como artefactos
-      - name: Upload binaries
-        uses: actions/upload-artifact@v3
-        with:
-          name: Tarea7-binaries
-          path: Tarea7/Tarea7-binaries.tar.gz
