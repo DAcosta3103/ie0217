@@ -17,11 +17,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Instalar dependencias necesarias (CMake, GCC, GoogleTest, LCOV)
+      # 2. Instalar dependencias necesarias
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y build-essential cmake lcov gcc g++
+          sudo apt install -y build-essential cmake lcov gcc g++ libgtest-dev
+          cd /usr/src/gtest
+          sudo cmake .
+          sudo make
+          sudo mv libgtest*.a /usr/lib
+
 
       # 3. Configurar y compilar el proyecto
       - name: Configure and build
