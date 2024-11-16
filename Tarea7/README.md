@@ -7,10 +7,15 @@ Seguidamente, se le realizan tests de software al script con las distintas herra
 - Code Coverage (lcov)
 - Github Actions
 
-
+Para facilitar la revisión de este trabajo por parte de la asistente, se realiza un pequeño menú para probar todas las opciones de ambos scripts `inventario.cpp` y `calculos.cpp`.
 ## Cómo correr el código
 
 
+Considerando que se tiene instalado un compilador GCC para C++, lo primero es **situarse en la carpeta raíz _Tarea7_**.  Gracias al Makefile, solo es necesario un comando en línea para compilar ambos scripts:
+
+```bash
+make 
+```
 
 
 ## Explicación del Software Testing
@@ -234,3 +239,148 @@ Ahora bien, para implementar este flujo en un proyecto real se podría realizar 
 
 
 ## Parte Teórica
+
+
+## **1. ¿Qué es la Integración Continua (CI)?**
+La **Integración Continua (CI)** es una práctica de desarrollo de software que automatiza la integración y validación del código de manera frecuente. Implica realizar pruebas automáticas para detectar errores en etapas tempranas del ciclo de desarrollo.
+
+[Referencia](https://www.ibm.com/topics/software-testing#:~:text=Software%20testing%20is%20the%20process,ensure%20it%20meets%20user%20requirements)
+
+## **2. ¿Por qué es importante la Integración Continua?**
+Es importante porque:
+- Detecta errores temprano, reduciendo costos y tiempo de corrección.
+- Automatiza las pruebas, mejorando la eficiencia del equipo.
+- Promueve la colaboración al integrar el trabajo de múltiples desarrolladores de forma regular.
+- Asegura que el código siempre esté en un estado funcional y probado.
+
+[Referencia](https://www.ibm.com/topics/software-testing#:~:text=Software%20testing%20is%20the%20process,ensure%20it%20meets%20user%20requirements)
+
+## **3. ¿Qué es la Entrega Continua (CD)?**
+La **Entrega Continua (CD)** es una extensión de la CI que automatiza la preparación y entrega de software en entornos de producción o pruebas. Garantiza que cada cambio validado pueda ser desplegado de manera confiable.
+
+[Referencia](https://www.ibm.com/topics/software-testing#:~:text=Software%20testing%20is%20the%20process,ensure%20it%20meets%20user%20requirements)
+
+## **4. ¿Por qué es importante la Entrega Continua?**
+Es importante porque:
+- Permite realizar despliegues más rápidos y confiables.
+- Asegura que el software funcione correctamente en entornos reales antes de llegar a producción.
+- Facilita la entrega frecuente de nuevas características y correcciones.
+- Mejora el tiempo de comercialización del software.
+
+[Referencia](https://www.ibm.com/topics/software-testing#:~:text=Software%20testing%20is%20the%20process,ensure%20it%20meets%20user%20requirements)
+
+## **5. Diferencias entre CI y CD**
+
+| **Aspecto**            | **Integración Continua (CI)**                | **Entrega Continua (CD)**                     |
+|-------------------------|----------------------------------------------|-----------------------------------------------|
+| **Objetivo**            | Automatizar la integración y validación del código. | Automatizar el empaquetado y despliegue del sistema. |
+| **Enfoque**             | Validar que los cambios en el código no rompan el sistema. | Preparar y entregar software listo para desplegar. |
+| **Desencadenante**      | Cada commit o pull request.                  | Después de pasar las pruebas de CI.           |
+| **Resultado Principal** | Código probado y funcional.                  | Binarios empaquetados listos para despliegue. |
+
+[Referencia](https://www.ibm.com/topics/software-testing#:~:text=Software%20testing%20is%20the%20process,ensure%20it%20meets%20user%20requirements)
+
+## **6. ¿Qué es un pipeline de CI/CD?**
+Un pipeline de CI/CD es una secuencia automatizada de pasos para integrar, probar, empaquetar y desplegar software. Permite implementar CI/CD de manera estructurada, dividiendo tareas como:
+- Clonación del repositorio.
+- Instalación de dependencias.
+- Ejecución de pruebas.
+- Generación de artefactos y despliegue.
+
+[Referencia](https://about.gitlab.com/es/topics/ci-cd/cicd-pipeline/)
+
+## **7. ¿Qué herramientas de CI/CD existen?**
+Algunas herramientas populares son:
+- **GitHub Actions**: Integrada en GitHub para configurar flujos de CI/CD.
+- **Jenkins**: Herramienta de código abierto altamente personalizable.
+- **GitLab CI/CD**: Parte de la plataforma GitLab para CI/CD completo.
+- **CircleCI**: Enfocada en pipelines rápidos y simples.
+- **Travis CI**: Muy utilizada en proyectos de código abierto.
+
+[Referencia](https://about.gitlab.com/es/topics/ci-cd/cicd-pipeline/)
+
+## **8. ¿Qué es GitHub Actions?**
+GitHub Actions es una herramienta de CI/CD integrada en GitHub que permite automatizar flujos de trabajo en repositorios. Es ideal para ejecutar pruebas, generar artefactos y realizar despliegues en cada commit o pull request.
+
+[Referencia](https://about.gitlab.com/es/topics/ci-cd/cicd-pipeline/)
+
+## **9. ¿Cómo se integra GitHub Actions en un proyecto?**
+1. Crear un archivo YAML en `.github/workflows/` que defina los pasos del flujo de trabajo.
+2. Configurar triggers como `push` o `pull_request`.
+3. Definir los jobs que ejecutarán las tareas, como instalar dependencias, compilar el código y ejecutar pruebas.
+
+[Referencia](https://about.gitlab.com/es/topics/ci-cd/cicd-pipeline/)
+
+## **10. ¿Qué es un artefacto en CI/CD?**
+Un artefacto es un archivo o conjunto de archivos generados durante un pipeline de CI/CD. Ejemplos:
+- Binarios compilados.
+- Reportes de cobertura de código.
+- Archivos comprimidos para distribución.
+
+[Referencia](https://about.gitlab.com/es/topics/ci-cd/cicd-pipeline/)
+
+## **11. ¿Cómo se generan artefactos en GitHub Actions?**
+En GitHub Actions, los artefactos se generan utilizando la acción `upload-artifact`. Por ejemplo:
+
+"yaml"
+- name: Upload coverage report
+  uses: actions/upload-artifact@v3
+  with:
+    name: coverage-report
+    path: build/coverage-report
+"
+
+[Referencia](https://about.gitlab.com/es/topics/ci-cd/cicd-pipeline/)
+
+## **12. ¿Qué es la cobertura de código?**
+La cobertura de código mide qué porcentaje del código fuente es ejecutado durante las pruebas. Ayuda a identificar partes del código que no están probadas.
+
+[Referencia](https://medium.com/@xianpeng.shen/use-gcov-and-lcov-to-perform-code-coverage-testing-for-c-c-projects-c85708b91c78)
+
+## **13. ¿Qué herramientas existen para medir cobertura de código?**
+- **LCOV**: Herramienta para capturar y generar reportes de cobertura en proyectos C/C++.
+- **Codecov**: Servicio para integración de cobertura con reportes gráficos.
+- **SonarQube**: Analiza la calidad del código y la cobertura.
+
+[Referencia](https://medium.com/@xianpeng.shen/use-gcov-and-lcov-to-perform-code-coverage-testing-for-c-c-projects-c85708b91c78)
+
+## **14. ¿Cómo se genera un reporte de cobertura con LCOV?**
+1. Ejecutar pruebas para generar datos de cobertura.
+2. Usar `lcov` para capturar cobertura:
+   "bash"
+   lcov --capture --directory . --output-file coverage.info
+   "
+3. Filtrar archivos no deseados:
+   "bash"
+   lcov --remove coverage.info '/usr/*' --output-file filtered.info
+   "
+4. Generar un reporte HTML con `genhtml`:
+   "bash"
+   genhtml filtered.info --output-directory coverage-report
+   "
+
+[Referencia](https://medium.com/@xianpeng.shen/use-gcov-and-lcov-to-perform-code-coverage-testing-for-c-c-projects-c85708b91c78)
+
+## **15. ¿Cómo se implementó CI/CD en este proyecto?**
+1. **Integración Continua:**
+   - Instalación de dependencias (CMake, LCOV, GoogleTest).
+   - Compilación del proyecto.
+   - Ejecución de pruebas unitarias.
+   - Generación de un reporte de cobertura.
+
+2. **Entrega Continua:**
+   - Empaquetado de binarios en un archivo `.tar.gz`.
+   - Subida de artefactos (binarios y reporte de cobertura).
+   - Simulación de despliegue exitoso mediante logs.
+
+[Referencia](https://medium.com/@xianpeng.shen/use-gcov-and-lcov-to-perform-code-coverage-testing-for-c-c-projects-c85708b91c78)
+
+## **16. ¿Cuáles son los beneficios de implementar CI/CD en este proyecto?**
+1. **Automatización:** Reduce errores humanos al automatizar pruebas y despliegues.
+2. **Confiabilidad:** Garantiza que cada cambio pase por pruebas antes de ser integrado.
+3. **Velocidad:** Permite ciclos de desarrollo y entrega más rápidos.
+4. **Documentación:** Los artefactos y logs facilitan el seguimiento del proyecto.
+5. **Escalabilidad:** El código se vuelve más escalable, ya que la parte de software testing se encarga del "trabajo sucio", uno como programador puede solo agregar más cosas.
+
+
+
