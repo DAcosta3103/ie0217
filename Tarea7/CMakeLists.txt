@@ -26,3 +26,7 @@ target_link_libraries(testInventario ${GTEST_LIBRARIES} gtest_main pthread)
 # Configuración de la prueba para Cálculos
 add_executable(testCalculos tests/testCalculos.cpp ${SOURCE_FILES})
 target_link_libraries(testCalculos ${GTEST_LIBRARIES} gtest_main pthread)
+
+# Configuración de la prueba funcional
+add_executable(FunctionalTest tests/functionalTesting.cpp ${SOURCE_FILES})
+target_link_libraries(FunctionalTest ${GTEST_LIBRARIES} gtest_main pthread)
