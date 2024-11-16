@@ -17,19 +17,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Configurar el entorno de C++
-      - name: Set up C++ environment
-        uses: actions/setup-cpp@v1
-        with:
-          compiler: gcc
-
-      # 3. Instalar dependencias necesarias (CMake, GoogleTest, LCOV)
+      # 2. Instalar dependencias necesarias (CMake, GCC, GoogleTest, LCOV)
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y cmake lcov
+          sudo apt install -y build-essential cmake lcov gcc g++
 
-      # 4. Configurar y compilar el proyecto
+      # 3. Configurar y compilar el proyecto
       - name: Configure and build
         run: |
           cd Tarea7
@@ -38,7 +32,7 @@ jobs:
           cmake ..
           make
 
-      # 5. Ejecutar pruebas
+      # 4. Ejecutar pruebas
       - name: Run tests
         run: |
           cd Tarea7/build
@@ -47,7 +41,7 @@ jobs:
           ./FunctionalTest
           ./testCapacitancia
 
-      # 6. Generar reporte de cobertura
+      # 5. Generar reporte de cobertura
       - name: Generate coverage report
         run: |
           cd Tarea7/build
@@ -55,7 +49,7 @@ jobs:
           lcov --remove coverage.info '/usr/*' '*/tests/*' --output-file coverage.filtered.info
           genhtml coverage.filtered.info --output-directory coverage-report
 
-      # 7. Publicar el reporte de cobertura como artefacto (opcional)
+      # 6. Publicar el reporte de cobertura como artefacto
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
