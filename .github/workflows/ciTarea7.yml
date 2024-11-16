@@ -13,31 +13,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Clonar el repositorio
+      # Paso 1: Clonar el repositorio
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      # 2. Instalar dependencias necesarias
+      # Paso 2: Clonar GoogleTest dentro de Tarea7
+      - name: Clone GoogleTest
+        run: |
+          git clone https://github.com/google/googletest.git Tarea7/googletest
+
+      # Paso 3: Instalar dependencias necesarias
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install -y build-essential cmake lcov gcc g++ libgtest-dev
-          cd /usr/src/gtest
-          sudo cmake .
-          sudo make
-          sudo mv libgtest*.a /usr/lib
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake lcov
 
-
-      # 3. Configurar y compilar el proyecto
-      - name: Configure and build
+      # Paso 4: Compilar GoogleTest
+      - name: Build GoogleTest
         run: |
-          cd Tarea7
-          mkdir build
-          cd build
+          mkdir -p Tarea7/googletest/build
+          cd Tarea7/googletest/build
+          cmake ..
+          make
+          sudo cp lib/*.a /usr/local/lib  # Copiar bibliotecas de GoogleTest
+
+      # Paso 5: Crear directorio de compilación y compilar el proyecto
+      - name: Build project
+        run: |
+          mkdir -p Tarea7/build
+          cd Tarea7/build
           cmake ..
           make
 
-      # 4. Ejecutar pruebas
+      # Paso 6: Ejecutar las pruebas
       - name: Run tests
         run: |
           cd Tarea7/build
@@ -46,7 +54,7 @@ jobs:
           ./FunctionalTest
           ./testCapacitancia
 
-      # 5. Generar reporte de cobertura
+      # Paso 7: Generar reporte de cobertura
       - name: Generate coverage report
         run: |
           cd Tarea7/build
@@ -54,7 +62,7 @@ jobs:
           lcov --remove coverage.info '/usr/*' '*/tests/*' --output-file coverage.filtered.info
           genhtml coverage.filtered.info --output-directory coverage-report
 
-      # 6. Publicar el reporte de cobertura como artefacto
+      # Paso 8: Subir el reporte de cobertura como artefacto
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
