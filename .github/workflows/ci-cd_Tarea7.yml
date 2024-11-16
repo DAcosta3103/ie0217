@@ -73,3 +73,30 @@ jobs:
         with:
           name: coverage-report
           path: Tarea7/build/coverage-report
+
+  package-and-deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Clonar el repositorio
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Paso 2: Crear artefactos de los binarios
+      - name: Create distribution artifacts
+        run: |
+          cd Tarea7/build
+          tar -czf Tarea7-binaries.tar.gz testInventario testCalculos FunctionalTest testCapacitancia
+          mv Tarea7-binaries.tar.gz ../Tarea7-binaries.tar.gz
+
+      # Paso 3: Subir binarios como artefactos
+      - name: Upload binaries
+        uses: actions/upload-artifact@v3
+        with:
+          name: Tarea7-binaries
+          path: Tarea7/Tarea7-binaries.tar.gz
+
+      # Paso 4: Simular despliegue exitoso
+      - name: Simulate deployment
+        run: echo "Despliegue exitoso: los binarios están listos para ser distribuidos."
