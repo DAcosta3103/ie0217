@@ -96,6 +96,28 @@ Para cubrir estas líneas, de manera que se pueda tener un 100% de cobertura en 
 - Prueba para añadir una cantidad menor o igual a cero de algún componente
 - Prueba para reducir una cantidad de un componente que no existe en el inventario
 
+### Functional Testing
+
+Se realiza una prueba funcional para probar el flujo correcto del script de `inventario.cpp`. La prueba sigue los siguientes pasos:
+
+```cpp
+// Paso 1: Agregar componentes y verificar que los componentes se agregaron correctamente
+
+// Paso 2: Reducir una cantidad válida
+
+
+// Paso 3: Intentar reducir una cantidad inválida (más de lo disponible)
+
+// Paso 4: Verificar que el inventario final es correcto
+
+// Paso 5: Buscar un componente en específico
+
+```
+Se espera que la prueba de resultados positivos, en el sentido de que las pruebas funcionen correctamente y se testee bien el script.
+
+![Test de las pruebas funcionales](imagenes/MakeFunctionalTesting.png)
+
+### Test-Driven Development
 
 
 
