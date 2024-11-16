@@ -1,6 +1,8 @@
 #include "inventario.hpp"
 #include "calculos.hpp"
 #include <iostream>
+#include <vector>
+#include <string>
 
 using namespace std;
 
@@ -86,7 +88,8 @@ int main() {
 
             case 5: {
                 int opcionCalculo;
-                vector<double> valores;
+                vector<double> valoresSerie;
+                vector<double> valoresParalelo;
 
                 cout << "\nSeleccione el tipo de cálculo:\n";
                 cout << "1. Resistencia en serie\n";
@@ -95,12 +98,29 @@ int main() {
                 cout << "4. Capacitancia en paralelo\n";
                 cout << "5. Inductancia en serie\n";
                 cout << "6. Inductancia en paralelo\n";
+                cout << "7. Capacitancia en serie y paralelo (separado por grupos)\n";
                 cin >> opcionCalculo;
 
-                cout << "Ingrese los valores separados por espacio (finalice con 0):\n";
-                double valor;
-                while (cin >> valor && valor != 0) {
-                    valores.push_back(valor);
+                if (opcionCalculo == 7) {
+                    // Capturar capacitancias en serie
+                    cout << "Ingrese los valores en SERIE separados por espacio (finalice con 0):\n";
+                    double valor;
+                    while (cin >> valor && valor != 0) {
+                        valoresSerie.push_back(valor);
+                    }
+
+                    // Capturar capacitancias en paralelo
+                    cout << "Ingrese los valores en PARALELO separados por espacio (finalice con 0):\n";
+                    while (cin >> valor && valor != 0) {
+                        valoresParalelo.push_back(valor);
+                    }
+                } else {
+                    // Capturar valores para los cálculos generales
+                    cout << "Ingrese los valores separados por espacio (finalice con 0):\n";
+                    double valor;
+                    while (cin >> valor && valor != 0) {
+                        valoresSerie.push_back(valor);  // Usamos una lista genérica
+                    }
                 }
 
                 try {
@@ -108,22 +128,25 @@ int main() {
 
                     switch (opcionCalculo) {
                         case 1:
-                            resultado = Calculos::resistenciaSerie(valores);
+                            resultado = Calculos::resistenciaSerie(valoresSerie);
                             break;
                         case 2:
-                            resultado = Calculos::resistenciaParalelo(valores);
+                            resultado = Calculos::resistenciaParalelo(valoresSerie);
                             break;
                         case 3:
-                            resultado = Calculos::capacitanciaSerie(valores);
+                            resultado = Calculos::capacitanciaSerie(valoresSerie);
                             break;
                         case 4:
-                            resultado = Calculos::capacitanciaParalelo(valores);
+                            resultado = Calculos::capacitanciaParalelo(valoresSerie);
                             break;
                         case 5:
-                            resultado = Calculos::inductanciaSerie(valores);
+                            resultado = Calculos::inductanciaSerie(valoresSerie);
                             break;
                         case 6:
-                            resultado = Calculos::inductanciaParalelo(valores);
+                            resultado = Calculos::inductanciaParalelo(valoresSerie);
+                            break;
+                        case 7:
+                            resultado = Calculos::capacitanciaEquivalenteSerieParalelo(valoresSerie, valoresParalelo);
                             break;
                         default:
                             cerr << "Opción no válida.\n";

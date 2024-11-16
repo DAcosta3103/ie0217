@@ -119,6 +119,35 @@ Se espera que la prueba de resultados positivos, en el sentido de que las prueba
 
 ### Test-Driven Development
 
+Primero se realiza un script para un simple testing con una prueba para cada método referente a las capacitancias: 
+- Combinación de capacitancias en serie
+- Combinación de capacitancias en paralelo
+- Combinación de capacitancais en serie y paralelo
+
+Seguidamente, se implemente una nueva función `capacitanciaEquivalenteSerieParalelo` en el archivo `calculos.cpp`, la cual se ve así:
+
+```cpp
+double Calculos::capacitanciaEquivalenteSerieParalelo(const vector<double>& serie, const vector<double>& paralelo) {
+    validarValores(serie);
+    validarValores(paralelo);
+
+    double serieEq = capacitanciaSerie(serie);
+    double paraleloEq = capacitanciaParalelo(paralelo);
+
+    // Combinar serie y paralelo (asumimos que están en paralelo)
+    return serieEq + paraleloEq;
+}
+```
+
+Entonces, se le brindan dos listas de datos a la función: los valores de las capacitancias en serie y en paralelo. Las pruebas realizadas se nombran a continuación:
+- Prueba válida para capacitancia equivalente combinada en serie y paralelo
+- Prueba con una lista vacía para serie
+- Prueba con valores negativos en paralelo
+- Prueba con ambas listas vacías
+
+Las pruebas se pasan con éxito, como se nota en la imagen:
+![Pruebas para capacitancia equivalente](imagenes/ResultadosTestCapacitanciaEq.png)
+
 
 
 ## Parte Teórica

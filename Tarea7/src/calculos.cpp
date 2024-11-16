@@ -69,3 +69,14 @@ double Calculos::inductanciaParalelo(const vector<double>& inductancias) {
     }
     return 1.0/suma;
 } 
+
+double Calculos::capacitanciaEquivalenteSerieParalelo(const vector<double>& serie, const vector<double>& paralelo) {
+    validarValores(serie);
+    validarValores(paralelo);
+
+    double serieEq = capacitanciaSerie(serie);
+    double paraleloEq = capacitanciaParalelo(paralelo);
+
+    // Combinar serie y paralelo (asumimos que están en paralelo)
+    return serieEq + paraleloEq;
+}

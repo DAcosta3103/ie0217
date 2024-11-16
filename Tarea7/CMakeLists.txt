@@ -30,3 +30,7 @@ target_link_libraries(testCalculos ${GTEST_LIBRARIES} gtest_main pthread)
 # Configuración de la prueba funcional
 add_executable(FunctionalTest tests/functionalTesting.cpp ${SOURCE_FILES})
 target_link_libraries(FunctionalTest ${GTEST_LIBRARIES} gtest_main pthread)
+
+# Configuración de la prueba de capacitancia equivalente
+add_executable(testCapacitancia tests/testTDD.cpp ${SOURCE_FILES})
+target_link_libraries(testCapacitancia ${GTEST_LIBRARIES} gtest_main pthread)
