@@ -23,15 +23,15 @@ Primero, se realizan archivos de testing en C++, utilizando Google Test. Un cód
 // Se prueba el caso donde se agrega un componente y luego una mayor cantidad del mismo componente
 TEST(InventarioTest, AgregarCantidadExistente) {
     Inventario inventario;
-    inventario.agregarComponente("Resistencia", "Resistencia", 10, "Resistencia de 10 ohms");
-    inventario.agregarComponente("Resistencia", "Resistencia", 5, "Resistencia de 10 ohms");
+    inventario.agregarComponente(`Resistencia`, `Resistencia`, 10, `Resistencia de 10 ohms`);
+    inventario.agregarComponente(`Resistencia`, `Resistencia`, 5, `Resistencia de 10 ohms`);
 
     testing::internal::CaptureStdout();
     inventario.listarComponentes();
     string output = testing::internal::GetCapturedStdout();
     
     // Se espera que la cantidad final sea de 15
-    EXPECT_NE(output.find("Cantidad: 15"), string::npos);
+    EXPECT_NE(output.find(`Cantidad: 15`), string::npos);
 }
 ```
 
@@ -148,6 +148,89 @@ Entonces, se le brindan dos listas de datos a la función: los valores de las ca
 Las pruebas se pasan con éxito, como se nota en la imagen:
 ![Pruebas para capacitancia equivalente](imagenes/ResultadosTestCapacitanciaEq.png)
 
+### Github Actions
+
+#### **1. Continuous Integration (CI)**
+
+El flujo de trabajo de CI realiza lo siguiente:
+1. **Instalación de Dependencias:**
+   - Descarga e instala herramientas necesarias como `CMake`, `GoogleTest` y `LCOV`.
+   - Clona el repositorio de GoogleTest para ejecutar las pruebas unitarias.
+
+2. **Compilación del Proyecto:**
+   - Compila los archivos fuente del proyecto junto con los tests utilizando `CMake`.
+
+3. **Ejecución de Pruebas Unitarias:**
+   - Ejecuta los binarios generados de las pruebas unitarias (`testInventario`, `testCalculos`, etc.).
+   - Asegura que todas las pruebas pasen exitosamente.
+
+4. **Reporte de Cobertura de Código:**
+   - Genera un reporte de cobertura de código utilizando `LCOV`.
+   
+
+##### **Artefactos Generados por CI:**
+- **coverage-report:** Contiene un reporte HTML que detalla la cobertura de código del proyecto.
+
+---
+
+#### **2. Continuous Delivery (CD)**
+
+El flujo de trabajo de CD realiza lo siguiente:
+1. **Empaquetado de Binarios:**
+   - Los binarios generados (como `testInventario`, `testCalculos`, etc.) se comprimen en un archivo `.tar.gz` para su distribución.
+
+2. **Subida de Binarios como Artefactos:**
+   - El archivo comprimido con los binarios se sube como artefacto descargable en GitHub Actions bajo el nombre `Tarea7-binaries`.
+
+3. **Simulación de Despliegue:**
+   - Al final del flujo, se imprime el siguiente mensaje en los logs de **GitHub Actions**:
+     `Despliegue exitoso: los binarios están listos para ser distribuidos.`
+
+##### **Artefactos Generados por CD:**
+- **Tarea7-binaries:** Archivo comprimido `.tar.gz` que contiene los binarios del proyecto.
+
+---
+
+#### **3. Configuración del Workflow**
+
+El pipeline está configurado en el archivo `.github/workflows/ci_cd_Tarea7.yml`. A continuación, se describen las etapas principales:
+
+##### **build-and-test**
+1. **Checkout del Código:**
+   Clona el repositorio.
+2. **Instalación de Dependencias:**
+   Instala herramientas como `CMake`, `GoogleTest` y `LCOV`.
+3. **Compilación:**
+   Compila el proyecto y genera binarios para las pruebas.
+4. **Ejecución de Pruebas:**
+   Ejecuta las pruebas unitarias generadas.
+5. **Generación de Reporte de Cobertura:**
+   Genera un reporte de cobertura de código en formato HTML.
+
+##### **package-and-deploy**
+1. **Empaquetado:**
+   Comprime los binarios generados en un archivo `.tar.gz`.
+2. **Subida de Binarios:**
+   Sube el archivo comprimido como artefacto descargable.
+3. **Simulación de Despliegue:**
+   Imprime un mensaje indicando que el despliegue fue exitoso.
+
+
+Como se puede ver en las siguientes imágenes, el proceso realizado por github actions fue exitoso, de tal forma que ambos dan "Success!", y se genera el mensae de éxito **"Los binarios están listos para ser distribuidos"**.
+
+![Resumen Github Actions](imagenes/ResumenGithubActions.png)
+
+![Mensaje de exito en Github Actions](imagenes/MensajeExitoGithubActions.png)
+
+Ahora bien, para implementar este flujo en un proyecto real se podría realizar lo siguiente:
+1. **Automatización de Despliegue Real:**
+   - Modifica el paso "Simulate deployment" para realizar una acción real, como copiar binarios a un servidor o ejecutar un script de despliegue.
+
+2. **Notificaciones:**
+   - Añade integraciones para notificar al equipo (por ejemplo, usando Slack o correo) cuando el despliegue sea exitoso.
+
+3. **Personalización:**
+   - Adapta el pipeline a las necesidades específicas del proyecto, como configuraciones adicionales de compilación o pruebas de integración.
 
 
 ## Parte Teórica
