@@ -4,8 +4,14 @@ cmake_minimum_required(VERSION 3.10)
 project(Tarea7)
 
 # Configuración de GoogleTest
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+if(EXISTS ${CMAKE_SOURCE_DIR}/googletest)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/googletest)
+    include_directories(${CMAKE_SOURCE_DIR}/googletest/include)
+else()
+    find_package(GTest REQUIRED)
+    include_directories(${GTEST_INCLUDE_DIRS})
+endif()
+
 
 # Habilitar cobertura de código
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
