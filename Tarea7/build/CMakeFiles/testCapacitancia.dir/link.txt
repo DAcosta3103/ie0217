@@ -1,0 +1,1 @@
+/usr/bin/c++ --coverage CMakeFiles/testCapacitancia.dir/tests/testTDD.cpp.o CMakeFiles/testCapacitancia.dir/src/inventario.cpp.o CMakeFiles/testCapacitancia.dir/src/calculos.cpp.o -o testCapacitancia  /usr/lib/x86_64-linux-gnu/libgtest.a -lgtest_main -lpthread 

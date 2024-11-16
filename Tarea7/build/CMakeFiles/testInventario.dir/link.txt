@@ -1,0 +1,1 @@
+/usr/bin/c++ --coverage CMakeFiles/testInventario.dir/tests/testInventario.cpp.o CMakeFiles/testInventario.dir/src/inventario.cpp.o CMakeFiles/testInventario.dir/src/calculos.cpp.o -o testInventario  /usr/lib/x86_64-linux-gnu/libgtest.a -lgtest_main -lpthread 

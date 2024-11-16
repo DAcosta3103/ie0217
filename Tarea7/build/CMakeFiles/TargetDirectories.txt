@@ -1,0 +1,6 @@
+/home/diego/ie0217/repo/ie0217/Tarea7/build/CMakeFiles/testInventario.dir
+/home/diego/ie0217/repo/ie0217/Tarea7/build/CMakeFiles/testCalculos.dir
+/home/diego/ie0217/repo/ie0217/Tarea7/build/CMakeFiles/FunctionalTest.dir
+/home/diego/ie0217/repo/ie0217/Tarea7/build/CMakeFiles/testCapacitancia.dir
+/home/diego/ie0217/repo/ie0217/Tarea7/build/CMakeFiles/edit_cache.dir
+/home/diego/ie0217/repo/ie0217/Tarea7/build/CMakeFiles/rebuild_cache.dir
