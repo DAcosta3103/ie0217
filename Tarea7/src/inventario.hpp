@@ -12,8 +12,11 @@ using namespace std;
 
 class Componente {
     public:
-        string nombre, categoria, descripcion;
+        string nombre;
+        string categoria;
         int cantidad;
+        string descripcion;
+        
         Componente(const string &nombre, const string &categoria, int cantidad, const string &descripcion);
 };
 
