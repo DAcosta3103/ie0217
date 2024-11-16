@@ -7,6 +7,12 @@ project(Tarea7)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
+# Habilitar cobertura de código
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    add_compile_options(--coverage)
+    add_link_options(--coverage)
+endif()
+
 # Archivos fuente principales
 set(SOURCE_FILES
     src/inventario.cpp

@@ -16,7 +16,6 @@ TEST(CalculosTest, ResistenciaParaleloValida) {
 }
 
 // Prueba válida para el método de sumar capacitancias en serie
-// Como todos los métodos de cálculo para cada tipo de impedancia tienen el mismo template, no es necesario probarlos todos 
 TEST(CalculosTest, CapacitanciaSerieValida) {
     vector<double> capacitancias = {100, 200};
     EXPECT_DOUBLE_EQ(Calculos::capacitanciaSerie(capacitancias), 300);
@@ -33,6 +32,19 @@ TEST(CalculosTest, CapacitanciaParalelaInvalida) {
     vector<double> capacitancias = {-10, 100.5};
     EXPECT_THROW(Calculos::validarValores(capacitancias), invalid_argument);
 }
+
+// Se validan los métodos para los inductores en paralelo
+TEST(CalculosTest, InductanciaParalelaValida) {
+    vector<double> inductancias = {100, 200};
+    EXPECT_NEAR(Calculos::inductanciaParalelo(inductancias), 66.67, 0.01);
+}
+
+// Prueba válida para el método de sumar inductores en serie
+TEST(CalculosTest, InductanciaSerieValida) {
+    vector<double> inductancias = {100, 200, 300};
+    EXPECT_DOUBLE_EQ(Calculos::inductanciaSerie(inductancias), 600.0);
+}
+
 
 // Se prueba el manejo del error de lista vacía (no se brindaron argumentos para los valores de las resistencias, capacitancias, etc.)
 TEST(CalculosTest, ListaVaciaLanzaExcepcion) {
